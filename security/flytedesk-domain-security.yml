@@ -1,13 +1,23 @@
-generated: '2026-07-19'
+generated: '2026-08-12'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
-- host: flytedesk.com
+- host: www.flytedesk.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Oct 15 03:37:31 2026 GMT
+  cert_expires: Oct 16 10:54:26 2026 GMT
   hsts: true
   hsts_max_age: 31536000
+- host: app.flytedesk.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 22 23:59:59 2027 GMT
+  hsts: false
+- host: api.app.flytedesk.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Nov  5 23:59:59 2026 GMT
+  hsts: null
 domains:
 - domain: flytedesk.com
   dnssec: false

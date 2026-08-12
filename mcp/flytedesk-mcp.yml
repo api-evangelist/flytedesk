@@ -1,0 +1,127 @@
+generated: '2026-08-12'
+method: derived
+source: graphql/flytedesk-graphql.graphql
+status: candidate
+note: >-
+  FlyteDesk operates NO MCP server. Searched the flytedesk.com site, every subdomain, the
+  Flytedesk GitHub organization and the public MCP registries — nothing. What follows is a
+  CANDIDATE tool surface derived mechanically from the read-side of FlyteDesk's GraphQL
+  schema, showing what an MCP server over this API could expose. It is not published by
+  FlyteDesk, is not callable, and no MCPServer pointer is emitted in apis.yml.
+searched:
+- surface: https://www.flytedesk.com/ and all subdomains
+  result: no MCP endpoint, no /mcp path, no mcp.json
+- surface: https://github.com/orgs/Flytedesk/repositories
+  result: 9 public repos, none an MCP server
+- surface: FlyteDesk llms.txt
+  result: no tool list, no MCP reference
+official_server: null
+endpoint: null
+transport: null
+authentication:
+  note: >-
+    Any real server would inherit the API's JWT-bearer auth and its
+    invite-only credential issuance — see authentication/flytedesk-authentication.yml.
+    There is no OAuth authorization server to discover.
+candidate_tool_count: 20
+candidate_tools:
+- name: get_supplier
+  graphql: Query.supplier(id)
+  category: supply
+  description: Fetch one campus media supplier by id.
+- name: list_suppliers
+  graphql: Query.suppliers(sort, filter, first, page)
+  category: supply
+  description: Page through campus media suppliers with filter and sort.
+- name: get_supplier_filter_data
+  graphql: Query.supplierFilterData(id)
+  category: supply
+  description: Fetch the filter facets available for a supplier.
+- name: list_takeover_suppliers
+  graphql: Query.takeoverSuppliers
+  category: supply
+  description: List suppliers available for takeover campaigns.
+- name: get_campus
+  graphql: Query.campuses(sort, filter, first, page)
+  category: campus
+  description: Page through campuses in the network.
+- name: list_campuses_with_data
+  graphql: Query.campusesWithData(sort, filter, first, page)
+  category: campus
+  description: Page through campuses that carry audience/inventory data.
+- name: get_buyer
+  graphql: Query.buyer(id)
+  category: demand
+  description: Fetch one advertiser/buyer account.
+- name: list_takeover_buyers
+  graphql: Query.takeoverBuyers(filter)
+  category: demand
+  description: List buyers eligible for takeover campaigns.
+- name: get_ad
+  graphql: Query.ad(id)
+  category: campaign
+  description: Fetch one ad placement.
+- name: list_buyer_ads
+  graphql: Query.buyerAds(buyer_id, sort, filter, first, page)
+  category: campaign
+  description: Page through a buyer's ads.
+- name: list_campaigns
+  graphql: Query.campaigns(sort, filter, first, page)
+  category: campaign
+  description: Page through campaigns.
+- name: list_buyer_campaigns
+  graphql: Query.buyerCampaigns(buyer_id, sort, filter, first, page)
+  category: campaign
+  description: Page through a buyer's campaigns.
+- name: get_national_campaign_tracker
+  graphql: Query.nationalCampaignTracker
+  category: campaign
+  description: Fetch the national campaign tracker rollup.
+- name: get_ad_shop
+  graphql: Query.adShop(buyer_id, slug)
+  category: commerce
+  description: Fetch a supplier's ad shop storefront.
+- name: get_ad_shop_cart
+  graphql: Query.adShopCart(ad_shop_slug, id)
+  category: commerce
+  description: Fetch an ad shop cart.
+- name: list_order_line_items
+  graphql: Query.orderLineItems(supplier_id, sort, filter, first, page)
+  category: commerce
+  deprecated: true
+  description: Page through order line items. NOTE — this field is @deprecated in the schema.
+- name: get_payable_invoice
+  graphql: Query.payableInvoice(id)
+  category: finance
+  description: Fetch one payable invoice document.
+- name: list_invoice_terms
+  graphql: Query.invoiceTerms
+  category: finance
+  description: List available invoice terms.
+- name: get_national_finance_tracker
+  graphql: Query.nationalFinanceTracker
+  category: finance
+  description: Fetch the national finance tracker rollup.
+- name: get_audience
+  graphql: Query.audience(id)
+  category: audience
+  description: Fetch one audience definition used for campus targeting.
+excluded_from_candidates:
+  mutations: 25
+  reason: >-
+    Every mutation writes production advertising, order or finance records under a
+    namespaced mutate* type. Deriving write tools for an API we do not own, that publishes
+    no documentation and no sandbox, would be irresponsible; only read operations are
+    listed.
+  auth_and_session_fields:
+  - loginUserMutation
+  - logout
+  - resetPasswordMutation
+  - sendResetPasswordEmailMutation
+input_schemas:
+  available: true
+  note: >-
+    Real input schemas for every tool above are recoverable from
+    graphql/flytedesk-graphql.graphql — each query's filter/sort input objects are fully
+    described in the SDL. They are not inlined here because these tools are candidates,
+    not a published contract.

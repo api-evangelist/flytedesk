@@ -1,0 +1,39 @@
+generated: '2026-08-12'
+method: searched
+source: https://github.com/Flytedesk/flytedesk-skills
+note: >-
+  These are FlyteDesk's OWN packaged Agent Skills, saved verbatim from the public
+  Flytedesk/flytedesk-skills repository ("AI tool skills used by Flytedesk engineers").
+  Nothing here was authored by API Evangelist. Read the scope honestly: they are INTERNAL
+  ENGINEERING skills for FlyteDesk's Rails/npm codebase — dependency upgrades and test
+  authoring — not skills for consuming the FlyteDesk API. FlyteDesk publishes no API
+  documentation, so no API-grounded skill can be written for them; the GraphQL schema in
+  graphql/ would be the grounding if they ever do.
+repository: https://github.com/Flytedesk/flytedesk-skills
+repository_pushed: '2026-04-14'
+license: none declared
+scope: internal-engineering
+api_grounded: false
+skill_count: 3
+skills:
+- name: npm-package-update
+  file: skills/flytedesk-npm-package-update.md
+  source: https://github.com/Flytedesk/flytedesk-skills/blob/main/skills/npm-package-update/skill.md
+  description: >-
+    Safely evaluate and perform npm/yarn package updates. Use when reviewing yarn outdated
+    output, upgrading packages, analyzing release notes, handling breaking changes, or
+    coordinating npm updates with Rails gem dependencies.
+- name: rails-gem-update
+  file: skills/flytedesk-rails-gem-update.md
+  source: https://github.com/Flytedesk/flytedesk-skills/blob/main/skills/rails-gem-update/skill.md
+  description: >-
+    Safely evaluate and perform Ruby gem updates in a Rails modular monolith. Use when
+    reviewing bundle outdated output, upgrading gems, analyzing release notes, handling
+    migrations, or coordinating gem updates with frontend/npm dependencies.
+- name: testing-patterns
+  file: skills/flytedesk-testing-patterns.md
+  source: https://github.com/Flytedesk/flytedesk-skills/blob/main/skills/testing-patterns/skill.md
+  description: >-
+    Write automated tests using RSpec, Capybara, and FactoryBot for Rails applications. Use
+    when implementing features, fixing bugs, or when the user mentions testing, specs,
+    RSpec, Capybara, or test data.

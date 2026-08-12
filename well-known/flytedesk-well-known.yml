@@ -1,0 +1,131 @@
+generated: '2026-08-12'
+method: probed
+source: live HTTPS probes of every FlyteDesk host
+note: >-
+  Every /.well-known/ path 404s on every FlyteDesk host that answers honestly. The two
+  single-page-app hosts (app.flytedesk.com and platform.flytedesk.com) return HTTP 200
+  with an HTML SPA shell for EVERY path including nonsense ones — that is a catch-all
+  route, not a served document, so it is recorded as a miss. No WellKnown or SecurityTxt
+  pointer is emitted in apis.yml, because FlyteDesk does not serve any of these documents.
+hosts_probed:
+- www.flytedesk.com
+- flytedesk.com
+- app.flytedesk.com
+- platform.flytedesk.com
+- api.app.flytedesk.com
+- audience.flytedesk.com
+- rfp.flytedesk.com
+result: no-hits
+probes:
+- host: www.flytedesk.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/openid-configuration
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/api-catalog
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: www.flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/openid-configuration
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/api-catalog
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: api.app.flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: platform.flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: audience.flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: rfp.flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: flytedesk.com
+  path: /.well-known/agent.json
+  status: 404
+  file: null
+- host: platform.flytedesk.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: platform.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: platform.flytedesk.com
+  path: /.well-known/openid-configuration
+  status: 404
+  file: null
+- host: audience.flytedesk.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: audience.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: rfp.flytedesk.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: rfp.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 404
+  file: null
+- host: app.flytedesk.com
+  path: /.well-known/security.txt
+  status: 200
+  file: null
+  soft_hit: true
+  note: SPA catch-all returned text/html, not a security.txt document. Treated as a miss.
+- host: app.flytedesk.com
+  path: /.well-known/agent-card.json
+  status: 200
+  file: null
+  soft_hit: true
+  note: SPA catch-all returned text/html, not an AgentCard JSON object. Treated as a miss.

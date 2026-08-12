@@ -1,0 +1,140 @@
+generated: '2026-08-12'
+method: probed
+source: https://api.app.flytedesk.com/api/graphql
+note: >-
+  FlyteDesk operates a single GraphQL API at https://api.app.flytedesk.com/api/graphql.
+  It is the backend for the flytedesk web application at https://app.flytedesk.com/ and
+  is NOT a documented developer API — FlyteDesk publishes no developer portal, no API
+  reference and no SDK. It is captured here because it is a real, machine-readable,
+  first-party contract: introspection is enabled and answers anonymously, so the full
+  schema is publicly readable.
+ownership:
+  verdict: confirmed
+  evidence: >-
+    The endpoint host api.app.flytedesk.com is a FlyteDesk subdomain, is the only API
+    base referenced by the flytedesk single-page app bundle at
+    https://app.flytedesk.com/v3/js/app.8ac2b8af.js, and the schema domain vocabulary is
+    unambiguously FlyteDesk's campus-media advertising business (Campus, Supplier, Buyer,
+    AdShop, Campaign, NationalTagPath, MediaKit, RateSheet, OrderLineItem). No other
+    company's brand, contact or terms appear anywhere in the schema.
+x-evidence:
+  fetched: '2026-08-12'
+  url: https://api.app.flytedesk.com/api/graphql
+  method: POST
+  http_status: 200
+  content_type: application/json
+  introspection_enabled: true
+  authentication_required_for_introspection: false
+server:
+  implementation: Lighthouse (PHP/Laravel GraphQL)
+  evidence: >-
+    every response carries an extensions.lighthouse_subscriptions block; the edge is
+    awselb/2.0 with an appversion response header.
+transport:
+  method: POST
+  get_supported: false
+  get_status: 404
+  content_type: application/json
+  cors_allow_origin: https://app.flytedesk.com
+  cors_allow_credentials: true
+  exposed_headers:
+  - X-JwtBearerToken
+  - AppVersion
+  - AppVersionMismatch
+  - Content-Disposition
+schema:
+  sdl: graphql/flytedesk-graphql.graphql
+  introspection: graphql/flytedesk-introspection.json
+  types_total: 374
+  object_types: 219
+  query_fields: 37
+  mutation_fields: 25
+  subscription_type: Subscription
+  custom_scalars:
+  - Currency
+  - Date
+  - DateTime
+  - JSON
+  - URL
+  - Upload
+  interfaces: 0
+  unions:
+  - SearchData
+  directives:
+  - include
+  - skip
+  - deprecated
+surfaces:
+  queries:
+  - invite
+  - nationalFinanceTracker
+  - payableInvoice
+  - ad
+  - adShop
+  - audience
+  - buyer
+  - takeoverBuyers
+  - nationalCampaignTracker
+  - adShopCart
+  - formsByCategory
+  - invoiceTerms
+  - location
+  - placementSettingTemplates
+  - reachTypes
+  - scheduleTypes
+  - collectionSchedule
+  - mediakitTypes
+  - takeoverSuppliers
+  - supplier
+  - supplierFilterData
+  - adShopSubscriptionOverview
+  - nationalTagPath
+  - me
+  - user
+  - buyerAds
+  - buyerCampaigns
+  - campaigns
+  - notificationTypes
+  - featureflags
+  - orderLineItems
+  - suppliers
+  - campuses
+  - campusesWithData
+  - superTags
+  - nationalTagPaths
+  - users
+  mutations:
+  - registerUserFromBuyerInvite
+  - registerUserFromSupplierInvite
+  - mutateAccounting
+  - mutateFinanceTracker
+  - mutatePayableInvoiceDocument
+  - mutateAd
+  - mutateBuyer
+  - mutateCampaignTracker
+  - mutateCart
+  - mutateForm
+  - mutateNote
+  - mutateNotification
+  - mutateFeature
+  - mutateVariant
+  - mutateOrder
+  - mutateSupplier
+  - registerSupplier
+  - mutateSuperTag
+  - mutateNationalTagPath
+  - mutateUser
+  - loginUserMutation
+  - sendResetPasswordEmailMutation
+  - resetPasswordMutation
+  - updateUserAccount
+  - logout
+observations:
+- >-
+  Data resolution is gated: an anonymous `{ me { id } }` returns HTTP 200 with
+  `{"data":{"me":null}}` rather than an authorization error. The schema is public; the
+  data is not.
+- >-
+  Introspection is enabled in production against an unauthenticated caller. That is a
+  discoverability win for this catalog and a hardening question for FlyteDesk; it is
+  recorded here as observed fact, not as a recommendation.

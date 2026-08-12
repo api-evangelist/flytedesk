@@ -1,0 +1,74 @@
+generated: '2026-08-12'
+method: searched
+source: https://www.flytedesk.com/ + https://api.app.flytedesk.com/api/graphql + graphql/flytedesk-graphql.graphql
+note: >-
+  Searched the FlyteDesk website and every subdomain for a versioning policy, deprecation
+  policy, SLA, changelog or status page. None exists. status.flytedesk.com does not
+  resolve. The only lifecycle signal FlyteDesk emits is the @deprecated directive inside
+  its own GraphQL schema, plus a deploy-version response header.
+versioning:
+  policy_published: false
+  scheme: none
+  in_path: false
+  in_header: false
+  note: >-
+    There is no versioned API surface. The endpoint is a single unversioned path,
+    /api/graphql. Breaking changes to the schema would reach consumers immediately.
+  build_header:
+    name: appversion
+    value_shape: git commit sha
+    mismatch_header: AppVersionMismatch
+    note: A deploy identifier for the first-party SPA, not a consumer-pinnable API version.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  schema_deprecations: 1
+  deprecated_elements:
+  - type: Query
+    field: orderLineItems
+    reason: No longer supported
+    note: >-
+      Marked with the standard GraphQL @deprecated directive. No sunset date, no
+      replacement named, no migration guidance — the reason string is the framework
+      default.
+  note: >-
+    No Deprecation pointer is emitted in apis.yml: one @deprecated field with a default
+    reason string is not a published deprecation policy.
+status_page:
+  published: false
+  probes:
+  - url: https://status.flytedesk.com
+    status: 0
+    note: DNS does not resolve.
+  - url: https://www.flytedesk.com/
+    status: 200
+    note: No status or uptime link in navigation or footer.
+  note: No StatusPage pointer is emitted in apis.yml.
+sla:
+  published: false
+  note: >-
+    No SLA, uptime commitment or support-response target is published on the website or in
+    the terms of use.
+changelog:
+  published: false
+  probes:
+  - url: https://www.flytedesk.com/blog
+    status: 200
+    note: A marketing blog, not a dated product or API changelog.
+  - url: https://www.flytedesk.com/publishers/updates
+    status: 404
+    note: >-
+      Linked from the live application bundle as a publisher-facing updates page, but the
+      URL now 404s — a dead in-product link, not a changelog.
+support:
+  contact: https://www.flytedesk.com/contact
+  faq: https://www.flytedesk.com/faq
+  dead_links:
+  - url: https://www.flytedesk.com/buyer-support
+    status: 404
+    note: Linked from the live app bundle; the page no longer exists.
+  - url: https://www.flytedesk.com/publisher-support
+    status: 404
+    note: Linked from the live app bundle; the page no longer exists.

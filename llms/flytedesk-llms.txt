@@ -1,0 +1,22 @@
+# flytedesk
+
+> flytedesk helps brands reach college students through campus media networks.
+
+## About
+- [About](https://flytedesk.com/about-us)
+- [How it works](https://flytedesk.com/how-it-works)
+
+## For Brands
+- [Brands overview](https://flytedesk.com/brands)
+- [Insights - research, analysis, and case studies](https://flytedesk.com/insights)
+- [Audience Builder - define your target campus audience](https://audience.flytedesk.com/)
+- [Submit an RFP](https://rfp.flytedesk.com/)
+- [Politics](https://flytedesk.com/politics)
+
+## For Colleges
+- [Platform](https://flytedesk.com/platform)
+- [Resource Hub](https://flytedesk.com/resource-hub)
+- [Our Programming](https://flytedesk.com/our-programming)
+
+## Contact
+- [Book a call](https://flytedesk.com/contact)

@@ -1,0 +1,56 @@
+generated: '2026-08-12'
+method: probed
+source: https://app.flytedesk.com/v3/js/app.8ac2b8af.js (first-party application bundle) + live probes of digital.flytedesk.com
+note: >-
+  FlyteDesk publishes no component library documentation. Two client-side embeddable
+  scripts are referenced by absolute URL from FlyteDesk's own application bundle and are
+  recorded here as the company's embeddable surface. Both are served from
+  digital.flytedesk.com, which returns HTTP 403 "Request blocked" from CloudFront to our
+  probe, so the scripts themselves could not be read — only their existence and their
+  distribution shape are established.
+family_count: 2
+components:
+- family: third-party ad serving
+  name: 3p.js
+  url: https://digital.flytedesk.com/js/3p.js
+  delivery: script tag, first-party CDN
+  registry: cdn
+  version: null
+  published: null
+  pinned: false
+  probe_status: 403
+  note: >-
+    The URL is unpinned — it carries no version segment or hash, so it floats to whatever
+    is deployed. A publisher embedding it cannot tell what they are getting, and neither
+    can we. Referenced from the flytedesk SPA as the third-party ad-serving loader.
+- family: ad shop storefront
+  name: adshop/head.js
+  url: https://digital.flytedesk.com/js/adshop/head.js
+  delivery: script tag, first-party CDN
+  registry: cdn
+  version: null
+  published: null
+  pinned: false
+  probe_status: 403
+  note: >-
+    Head-injection loader for the Ad Shop storefront surface (the schema's AdShop /
+    BrowseProduct / Cart types back this). Also unpinned. Blocked by CloudFront for our
+    probe, so contents are unverified.
+loader_libraries: []
+documented: false
+docs: null
+evidence:
+- url: https://digital.flytedesk.com/js/3p.js
+  status: 403
+  content_type: text/html
+  note: CloudFront WAF — "The request could not be satisfied. Request blocked."
+  checked: '2026-08-12'
+- url: https://digital.flytedesk.com/js/adshop/head.js
+  status: 403
+  content_type: text/html
+  note: CloudFront WAF — same block page.
+  checked: '2026-08-12'
+- url: https://app.flytedesk.com/v3/js/app.8ac2b8af.js
+  status: 200
+  note: Source of both absolute URLs.
+  checked: '2026-08-12'

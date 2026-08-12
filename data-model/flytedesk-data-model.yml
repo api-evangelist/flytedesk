@@ -1,0 +1,1721 @@
+generated: '2026-08-12'
+method: derived
+source: graphql/flytedesk-graphql.graphql
+note: >-
+  Entity-relationship graph derived mechanically from the FlyteDesk GraphQL schema
+  captured by unauthenticated introspection at https://api.app.flytedesk.com/api/graphql.
+  Relationships are object-typed fields on each type: has_many when the field returns a
+  list, has_one otherwise. Paginator wrappers, root Query/Mutation and *Mutation namespace
+  types are excluded. FlyteDesk publishes no object reference, so there are no documented
+  id prefixes to record.
+format: graphql
+endpoint: https://api.app.flytedesk.com/api/graphql
+entity_count: 148
+relationship_count: 356
+entities:
+- name: AccountSubscription
+  field_count: 14
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: SubscriptionType
+    via: subscriptionType
+  - kind: has_one
+    target: CreditCard
+    via: primaryCreditCard
+  - kind: has_one
+    target: PaymentMethod
+    via: paymentMethod
+  - kind: has_many
+    target: Transaction
+    via: transactions
+- name: ActiveSearchTool
+  field_count: 2
+- name: Ad
+  field_count: 49
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: Campus
+    via: campus
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_one
+    target: Campaign
+    via: campaign
+  - kind: has_one
+    target: Dimension
+    via: dimension
+  - kind: has_one
+    target: FulfillmentMethod
+    via: fulfillment_method
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: OrderLineItem
+    via: orderLineItem
+  - kind: has_one
+    target: OrderProduct
+    via: orderProduct
+  - kind: has_one
+    target: Creative
+    via: creative
+  - kind: has_one
+    target: Verification
+    via: verification
+  - kind: has_one
+    target: DigitalChecklist
+    via: digitalChecklist
+  - kind: has_one
+    target: AdServingTags
+    via: servingTags
+  - kind: has_one
+    target: NationalTagPath
+    via: nationalTagPath
+  - kind: has_one
+    target: External
+    via: digitalVendorFlight
+  - kind: has_many
+    target: Note
+    via: notes
+  - kind: has_many
+    target: Tag
+    via: tags
+  - kind: has_many
+    target: HistoryRecord
+    via: history
+  - kind: has_one
+    target: Form
+    via: creativeForm
+  - kind: has_one
+    target: Form
+    via: verificationForm
+  - kind: has_one
+    target: AdGroup
+    via: adGroup
+- name: AdAnalytics
+  field_count: 16
+  id_fields:
+  - id
+  - asset_schedule_id
+  - supplier_id
+- name: AdGroup
+  field_count: 12
+  id_fields:
+  - id
+- name: AdServingTags
+  field_count: 3
+  id_fields:
+  - id
+- name: AdShop
+  field_count: 21
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: File
+    via: policiesFile
+  - kind: has_one
+    target: File
+    via: headerPhotoFile
+  - kind: has_one
+    target: File
+    via: profilePhotoFile
+  - kind: has_many
+    target: PaymentMethod
+    via: paymentMethods
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_many
+    target: BrowseProduct
+    via: browseProducts
+  - kind: has_one
+    target: Product
+    via: product
+- name: Address
+  field_count: 10
+  id_fields:
+  - id
+- name: AttributeColumn
+  field_count: 6
+  id_fields:
+  - id
+- name: Audience
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: AudienceSummary
+    via: summary
+  - kind: has_one
+    target: AudienceSummary
+    via: availableSummary
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: AudienceSummary
+  field_count: 2
+- name: AuthToken
+  field_count: 5
+  id_fields:
+  - id
+  - type_id
+- name: BillDocument
+  field_count: 22
+  id_fields:
+  - id
+  - provider_id
+  relationships:
+  - kind: has_many
+    target: DocumentLineItem
+    via: documentLineItems
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: User
+    via: user
+- name: BooleanData
+  field_count: 9
+- name: BrowseProduct
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: Product
+    via: product
+- name: Buyer
+  field_count: 31
+  id_fields:
+  - id
+  - campaign_type_id
+  relationships:
+  - kind: has_one
+    target: User
+    via: repUser
+  - kind: has_one
+    target: Contact
+    via: primaryContact
+  - kind: has_one
+    target: Contact
+    via: billingContact
+  - kind: has_many
+    target: Contact
+    via: creativeContacts
+  - kind: has_one
+    target: Address
+    via: primaryAddress
+  - kind: has_one
+    target: Address
+    via: billingAddress
+  - kind: has_one
+    target: Address
+    via: shippingAddress
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_one
+    target: Campaign
+    via: campaign
+  - kind: has_many
+    target: Cart
+    via: carts
+  - kind: has_many
+    target: Feature
+    via: features
+  - kind: has_many
+    target: Notification
+    via: notifications
+  - kind: has_many
+    target: Notification
+    via: pendingNotifications
+  - kind: has_many
+    target: Supplier
+    via: suppliers
+  - kind: has_many
+    target: Order
+    via: orders
+  - kind: has_many
+    target: Invite
+    via: invites
+  - kind: has_many
+    target: User
+    via: users
+  - kind: has_many
+    target: User
+    via: teamMembers
+  - kind: has_one
+    target: Audience
+    via: audience
+- name: BuyerUser
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: User
+    via: user
+- name: Campaign
+  field_count: 18
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Ad
+    via: invoicedAds
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Contact
+    via: primaryContact
+  - kind: has_one
+    target: Contact
+    via: billingContact
+  - kind: has_many
+    target: Order
+    via: orders
+  - kind: has_many
+    target: User
+    via: reps
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: Campus
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: LimitedCampusData
+    via: data
+  - kind: has_many
+    target: Supplier
+    via: suppliers
+- name: CampusWithData
+  field_count: 11
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: LimitedCampusData
+    via: limitedData
+  - kind: has_many
+    target: Supplier
+    via: suppliers
+- name: Cart
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: ProductVariantGroup
+    via: productVariantGroups
+  - kind: has_many
+    target: Buyer
+    via: buyers
+  - kind: has_many
+    target: CartDiscount
+    via: cartDiscounts
+  - kind: has_one
+    target: AdShop
+    via: adShop
+  - kind: has_many
+    target: Order
+    via: orders
+- name: CartDiscount
+  field_count: 3
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Cart
+    via: cart
+  - kind: has_one
+    target: Discount
+    via: discount
+- name: CartError
+  field_count: 3
+  id_fields:
+  - id
+- name: ChargeableBuyer
+  field_count: 11
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: MediumTypeAccountingSummary
+    via: mediumTypes
+- name: City
+  field_count: 2
+  id_fields:
+  - id
+- name: Collection
+  field_count: 17
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Property
+    via: property
+  - kind: has_many
+    target: CollectionCollectionType
+    via: typeEdges
+  - kind: has_one
+    target: ReachType
+    via: reachType
+  - kind: has_many
+    target: Reach
+    via: reaches
+  - kind: has_one
+    target: Dimension
+    via: dimension
+  - kind: has_many
+    target: Product
+    via: products
+  - kind: has_one
+    target: Schedule
+    via: schedule
+  - kind: has_many
+    target: InventoryReport
+    via: inventoryReport
+- name: CollectionCollectionType
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: CollectionType
+    via: type
+- name: CollectionType
+  field_count: 6
+  id_fields:
+  - id
+  - medium_type_id
+  relationships:
+  - kind: has_one
+    target: MediumType
+    via: mediumType
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: Contact
+  field_count: 8
+  id_fields:
+  - id
+  - user_id
+  relationships:
+  - kind: has_one
+    target: Contactable
+    via: contactable
+- name: Contactable
+  field_count: 4
+- name: County
+  field_count: 2
+  id_fields:
+  - id
+- name: CoupleSelectData
+  field_count: 6
+  relationships:
+  - kind: has_many
+    target: SelectOption
+    via: keyOptions
+  - kind: has_many
+    target: SelectOption
+    via: valueOptions
+- name: Creative
+  field_count: 15
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Ad
+    via: ad
+  - kind: has_one
+    target: Note
+    via: supplierRejectionNote
+  - kind: has_one
+    target: Note
+    via: buyerRejectionNote
+  - kind: has_one
+    target: FormResponse
+    via: formResponse
+- name: CreditCard
+  field_count: 9
+  id_fields:
+  - id
+- name: Customer
+  field_count: 17
+  id_fields:
+  - id
+  - buyer_id
+  - supplier_id
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Contact
+    via: buyerPrimaryContact
+  - kind: has_one
+    target: Contact
+    via: buyerBillingContact
+  - kind: has_many
+    target: User
+    via: buyerReps
+  - kind: has_many
+    target: Tag
+    via: tags
+  - kind: has_many
+    target: Note
+    via: notes
+  - kind: has_many
+    target: File
+    via: files
+  - kind: has_one
+    target: Terms
+    via: terms
+- name: DateCalendarData
+  field_count: 5
+- name: DateRangeData
+  field_count: 5
+- name: DigitalAdAnalytics
+  field_count: 26
+  id_fields:
+  - id
+  - ad_id
+  relationships:
+  - kind: has_one
+    target: Customer
+    via: customer
+- name: DigitalAnalyticsReportStats
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: DigitalAnalyticsStats
+    via: totals
+  - kind: has_one
+    target: DigitalAnalyticsStats
+    via: monthly
+  - kind: has_one
+    target: DigitalAnalyticsStats
+    via: daily
+- name: DigitalAnalyticsStats
+  field_count: 8
+- name: DigitalChecklist
+  field_count: 10
+  id_fields:
+  - id
+- name: DigitalScriptTagReporting
+  field_count: 3
+- name: DigitalScriptTagStatus
+  field_count: 2
+- name: DigitalStatus
+  field_count: 3
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: DigitalScriptTagStatus
+    via: scriptTag
+  - kind: has_one
+    target: DigitalScriptTagReporting
+    via: reporting
+- name: Dimension
+  field_count: 10
+  id_fields:
+  - id
+- name: Discount
+  field_count: 15
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_many
+    target: DiscountHistory
+    via: history
+- name: DiscountHistory
+  field_count: 3
+  id_fields:
+  - id
+- name: Dma
+  field_count: 2
+  id_fields:
+  - id
+- name: DocumentLineItem
+  field_count: 15
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: DocumentLineItem
+    via: children
+  - kind: has_one
+    target: OrderLineItem
+    via: orderLineItem
+  - kind: has_one
+    target: BillDocument
+    via: bill
+  - kind: has_one
+    target: InvoiceDocument
+    via: invoice
+- name: External
+  field_count: 8
+  id_fields:
+  - id
+  - external_id
+- name: Featurable
+  field_count: 2
+  id_fields:
+  - featurable_id
+- name: Feature
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Featurable
+    via: featurables
+- name: FieldValueChange
+  field_count: 6
+- name: File
+  field_count: 7
+  id_fields:
+  - id
+- name: FinanceTrackerAd
+  field_count: 16
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Campaign
+    via: campaign
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: OrderLineItem
+    via: orderLineItem
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: FinanceTrackerAdsSummary
+  field_count: 5
+- name: Form
+  field_count: 8
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: FormField
+    via: fields
+- name: FormField
+  field_count: 13
+  id_fields:
+  - id
+- name: FormFieldResponse
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_one
+    target: FormField
+    via: field
+- name: FormResponse
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_one
+    target: Form
+    via: form
+  - kind: has_many
+    target: FormFieldResponse
+    via: fieldResponses
+  - kind: has_many
+    target: File
+    via: images
+- name: FulfillmentMethod
+  field_count: 18
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: GeneratedForm
+  field_count: 4
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: FormField
+    via: fields
+- name: GroupData
+  field_count: 2
+- name: HistoryRecord
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_many
+    target: FieldValueChange
+    via: changes
+- name: InventoryReport
+  field_count: 15
+  id_fields:
+  - id
+- name: Invite
+  field_count: 7
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: User
+    via: user
+- name: InvoiceData
+  field_count: 4
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: InvoicesSelectionSummary
+    via: selectionSummary
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: InvoiceDocument
+  field_count: 34
+  id_fields:
+  - id
+  - provider_id
+  relationships:
+  - kind: has_one
+    target: Terms
+    via: terms
+  - kind: has_one
+    target: File
+    via: logo
+  - kind: has_many
+    target: DocumentLineItem
+    via: documentLineItems
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_many
+    target: Order
+    via: orders
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_many
+    target: Transaction
+    via: transactions
+  - kind: has_one
+    target: InvoiceSettings
+    via: settings
+- name: InvoiceSettings
+  field_count: 11
+  relationships:
+  - kind: has_one
+    target: Contact
+    via: customerPrimaryContact
+  - kind: has_one
+    target: Contact
+    via: customerBillingContact
+  - kind: has_one
+    target: Contact
+    via: vendorPrimaryContact
+  - kind: has_one
+    target: Contact
+    via: vendorBillingContact
+  - kind: has_one
+    target: Address
+    via: address
+- name: InvoicesSelectionSummary
+  field_count: 10
+- name: JobBatch
+  field_count: 9
+  id_fields:
+  - id
+- name: LimitedCampusData
+  field_count: 2
+- name: LineItemsSelectionSummary
+  field_count: 12
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Customer
+    via: uniqueCustomers
+- name: Medium
+  field_count: 15
+  id_fields:
+  - id
+  - supplier_id
+  relationships:
+  - kind: has_one
+    target: SuperTag
+    via: superTag
+  - kind: has_many
+    target: MediumMediumType
+    via: typeEdges
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_many
+    target: Property
+    via: properties
+- name: MediumMediumType
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: MediumType
+    via: type
+- name: MediumType
+  field_count: 13
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_many
+    target: PropertyType
+    via: propertyTypes
+  - kind: has_many
+    target: CollectionType
+    via: collectionTypes
+  - kind: has_many
+    target: ProductType
+    via: productTypes
+  - kind: has_many
+    target: ProductVariantType
+    via: variantTypes
+  - kind: has_many
+    target: PropertyType
+    via: distinctPropertyTypes
+  - kind: has_many
+    target: CollectionType
+    via: distinctCollectionTypes
+  - kind: has_many
+    target: ProductType
+    via: distinctProductTypes
+  - kind: has_many
+    target: ProductVariantType
+    via: distinctVariantTypes
+  - kind: has_one
+    target: Form
+    via: defaultCreativeForm
+- name: MediumTypeAccountingSummary
+  field_count: 5
+- name: NationalAdsSelectionsSummary
+  field_count: 3
+- name: NationalCampaignTracker
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Tag
+    via: adTags
+  - kind: has_one
+    target: NationalAdsSelectionsSummary
+    via: nationalAdsSelectionsSummary
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+  - kind: has_one
+    target: GeneratedForm
+    via: bulkCreativeForm
+- name: NationalFinanceTracker
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: FinanceTrackerAdsSummary
+    via: nationalAdsSummary
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+  - kind: has_many
+    target: PayableSupplier
+    via: payableSuppliers
+  - kind: has_many
+    target: ChargeableBuyer
+    via: chargeableBuyers
+- name: NationalTagPath
+  field_count: 12
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: SuperTag
+    via: mediumSuperTag
+  - kind: has_one
+    target: Form
+    via: creativeForm
+  - kind: has_one
+    target: Form
+    via: verificationForm
+- name: Note
+  field_count: 7
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: User
+    via: user
+- name: Notification
+  field_count: 12
+  id_fields:
+  - id
+- name: NotificationType
+  field_count: 4
+  id_fields:
+  - id
+- name: Order
+  field_count: 36
+  id_fields:
+  - id
+  - buyer_id
+  - supplier_id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: PaymentMethod
+    via: paymentMethod
+  - kind: has_one
+    target: PaymentMethod
+    via: approvedPaymentMethod
+  - kind: has_many
+    target: OrderDiscount
+    via: discounts
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Campaign
+    via: campaign
+  - kind: has_many
+    target: Ad
+    via: ads
+  - kind: has_one
+    target: AdShop
+    via: adShop
+  - kind: has_many
+    target: User
+    via: reps
+  - kind: has_many
+    target: OrderLineItem
+    via: lineItems
+  - kind: has_many
+    target: OrderLineItem
+    via: activeLineItems
+  - kind: has_one
+    target: Contact
+    via: primaryContact
+  - kind: has_one
+    target: Contact
+    via: billingContact
+  - kind: has_one
+    target: Address
+    via: customerAddress
+  - kind: has_one
+    target: Address
+    via: billingAddress
+  - kind: has_many
+    target: Note
+    via: notes
+- name: OrderDiscount
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: OrderLineItem
+    via: lineItem
+- name: OrderLineItem
+  field_count: 41
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Ad
+    via: ads
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: OrderDiscount
+    via: discount
+  - kind: has_many
+    target: OrderSubLineItem
+    via: subLineItems
+  - kind: has_many
+    target: Transaction
+    via: transactions
+  - kind: has_many
+    target: InvoiceDocument
+    via: invoices
+  - kind: has_many
+    target: BillDocument
+    via: bills
+  - kind: has_many
+    target: DocumentLineItem
+    via: invoiceLineItems
+  - kind: has_many
+    target: DocumentLineItem
+    via: billLineItems
+  - kind: has_many
+    target: InvoiceDocument
+    via: supplierInvoices
+- name: OrderLineItemTracker
+  field_count: 4
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: LineItemsSelectionSummary
+    via: lineItemsSelectionSummary
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: OrderProduct
+  field_count: 25
+  id_fields:
+  - id
+  - medium_id
+  - property_id
+  - collection_id
+  - product_variant_id
+  relationships:
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: Medium
+    via: medium
+  - kind: has_one
+    target: Property
+    via: property
+  - kind: has_one
+    target: Collection
+    via: collection
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_one
+    target: ProductVariant
+    via: product_variant
+  - kind: has_one
+    target: MediumType
+    via: mediumType
+  - kind: has_one
+    target: NationalTagPath
+    via: nationalTagPath
+  - kind: has_one
+    target: ScheduleType
+    via: scheduleType
+- name: OrderSubLineItem
+  field_count: 8
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: User
+    via: user
+- name: PageInfo
+  field_count: 8
+- name: PayableSupplier
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: MediumTypeAccountingSummary
+    via: mediumTypes
+- name: PaymentMethod
+  field_count: 5
+  id_fields:
+  - id
+- name: Permission
+  field_count: 4
+  id_fields:
+  - id
+- name: PlacementSetting
+  field_count: 8
+  id_fields:
+  - id
+  - template_id
+  relationships:
+  - kind: has_one
+    target: PlacementSettingTemplate
+    via: template
+- name: PlacementSettingTemplate
+  field_count: 4
+  id_fields:
+  - id
+- name: Product
+  field_count: 23
+  id_fields:
+  - id
+  - property_id
+  - campus_id
+  relationships:
+  - kind: has_one
+    target: Collection
+    via: collection
+  - kind: has_many
+    target: ProductProductType
+    via: typeEdges
+  - kind: has_one
+    target: File
+    via: primaryPhoto
+  - kind: has_many
+    target: File
+    via: photos
+  - kind: has_many
+    target: FulfillmentMethod
+    via: fulfillmentMethods
+  - kind: has_many
+    target: File
+    via: additionalFiles
+  - kind: has_many
+    target: ProductVariant
+    via: variants
+  - kind: has_one
+    target: PlacementSetting
+    via: defaultPlacementSetting
+- name: ProductProductType
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: ProductType
+    via: type
+- name: ProductType
+  field_count: 10
+  id_fields:
+  - id
+  - medium_type_id
+  relationships:
+  - kind: has_one
+    target: MediumType
+    via: mediumType
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: ProductVariant
+  field_count: 21
+  id_fields:
+  - id
+  - supplier_id
+  relationships:
+  - kind: has_one
+    target: Product
+    via: product
+  - kind: has_many
+    target: RateSheet
+    via: rateSheets
+  - kind: has_one
+    target: Unit
+    via: unit
+  - kind: has_one
+    target: Note
+    via: note
+  - kind: has_one
+    target: Creative
+    via: defaultCreative
+  - kind: has_many
+    target: SkuInventory
+    via: skuInventory
+  - kind: has_one
+    target: PlacementSetting
+    via: placementSetting
+- name: ProductVariantGroup
+  field_count: 8
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Cart
+    via: cart
+  - kind: has_one
+    target: ProductVariant
+    via: productVariant
+  - kind: has_one
+    target: FulfillmentMethod
+    via: fulfillmentMethod
+  - kind: has_many
+    target: ProductVariantGroupDate
+    via: dates
+  - kind: has_many
+    target: CartError
+    via: errors
+- name: ProductVariantGroupDate
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: CartError
+    via: errors
+- name: ProductVariantType
+  field_count: 8
+  id_fields:
+  - id
+  - medium_type_id
+  relationships:
+  - kind: has_one
+    target: MediumType
+    via: mediumType
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_many
+    target: ProductVariant
+    via: productVariants
+- name: Property
+  field_count: 22
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Medium
+    via: medium
+  - kind: has_many
+    target: PropertyPropertyType
+    via: typeEdges
+  - kind: has_one
+    target: ScheduleType
+    via: scheduleType
+  - kind: has_many
+    target: Collection
+    via: collections
+- name: PropertyPropertyType
+  field_count: 2
+  relationships:
+  - kind: has_one
+    target: PropertyType
+    via: type
+- name: PropertyType
+  field_count: 6
+  id_fields:
+  - id
+  - medium_type_id
+  relationships:
+  - kind: has_one
+    target: MediumType
+    via: mediumType
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: QuantityLimit
+  field_count: 5
+  id_fields:
+  - id
+- name: RangeData
+  field_count: 7
+- name: Rate
+  field_count: 4
+  id_fields:
+  - id
+- name: RateSheet
+  field_count: 7
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Rate
+    via: rates
+- name: Reach
+  field_count: 6
+  id_fields:
+  - id
+- name: ReachType
+  field_count: 4
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+- name: Role
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: Permission
+    via: permissions
+- name: Schedule
+  field_count: 7
+  id_fields:
+  - id
+  - schedule_type_id
+  relationships:
+  - kind: has_one
+    target: Collection
+    via: collection
+  - kind: has_one
+    target: ScheduleType
+    via: scheduleType
+  - kind: has_one
+    target: QuantityLimit
+    via: quantityLimit
+- name: ScheduleType
+  field_count: 4
+  id_fields:
+  - id
+- name: SearchTool
+  field_count: 7
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SearchTool
+    via: tools
+- name: SelectData
+  field_count: 13
+  relationships:
+  - kind: has_many
+    target: SelectOption
+    via: options
+- name: SelectOption
+  field_count: 2
+- name: Selection
+  field_count: 1
+  id_fields:
+  - id
+- name: SkuInventory
+  field_count: 13
+  id_fields:
+  - id
+- name: State
+  field_count: 3
+  id_fields:
+  - id
+- name: SubscriptionFeature
+  field_count: 7
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Feature
+    via: featureFlag
+- name: SubscriptionOverview
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SubscriptionType
+    via: types
+  - kind: has_many
+    target: SubscriptionFeature
+    via: features
+  - kind: has_many
+    target: PaymentMethod
+    via: paymentMethods
+- name: SubscriptionType
+  field_count: 9
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SubscriptionFeature
+    via: features
+- name: SummaryStat
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SummaryStatSubTotal
+    via: subTotals
+- name: SummaryStatSubTotal
+  field_count: 2
+- name: SuperTag
+  field_count: 3
+  id_fields:
+  - id
+- name: Supplier
+  field_count: 63
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Address
+    via: primaryAddress
+  - kind: has_one
+    target: Address
+    via: billingAddress
+  - kind: has_one
+    target: Address
+    via: shippingAddress
+  - kind: has_many
+    target: SummaryStat
+    via: summaryStats
+  - kind: has_one
+    target: User
+    via: repUser
+  - kind: has_many
+    target: Campus
+    via: campuses
+  - kind: has_many
+    target: Medium
+    via: mediums
+  - kind: has_many
+    target: MediumType
+    via: mediumTypes
+  - kind: has_many
+    target: Medium
+    via: mediakit
+  - kind: has_one
+    target: Property
+    via: property
+  - kind: has_one
+    target: Collection
+    via: collection
+  - kind: has_one
+    target: AdShop
+    via: adShop
+  - kind: has_many
+    target: Feature
+    via: features
+  - kind: has_one
+    target: Contact
+    via: billingContact
+  - kind: has_one
+    target: Contact
+    via: primaryContact
+  - kind: has_many
+    target: Contact
+    via: advisorContacts
+  - kind: has_one
+    target: Customer
+    via: customer
+  - kind: has_many
+    target: Buyer
+    via: buyers
+  - kind: has_many
+    target: Discount
+    via: discounts
+  - kind: has_many
+    target: User
+    via: teamMembers
+  - kind: has_many
+    target: User
+    via: buyerReps
+  - kind: has_many
+    target: Notification
+    via: notifications
+  - kind: has_many
+    target: Notification
+    via: pendingNotifications
+  - kind: has_many
+    target: Tag
+    via: tags
+  - kind: has_many
+    target: Tag
+    via: customerTags
+  - kind: has_many
+    target: Invite
+    via: invites
+  - kind: has_many
+    target: PaymentMethod
+    via: paymentMethods
+  - kind: has_one
+    target: InvoiceDocument
+    via: invoiceNotBeingDeleted
+  - kind: has_one
+    target: InvoiceData
+    via: invoiceData
+  - kind: has_one
+    target: Ad
+    via: ad
+  - kind: has_one
+    target: SupplierAdsData
+    via: adsData
+  - kind: has_many
+    target: SkuInventory
+    via: skuInventory
+  - kind: has_one
+    target: SupplierCustomersData
+    via: customersData
+  - kind: has_many
+    target: SupplierCustomerListItem
+    via: customerList
+  - kind: has_many
+    target: AttributeColumn
+    via: attributeColumns
+  - kind: has_many
+    target: FulfillmentMethod
+    via: fulfillmentMethods
+  - kind: has_many
+    target: Property
+    via: placementProperties
+  - kind: has_many
+    target: Product
+    via: placementProducts
+  - kind: has_many
+    target: Unit
+    via: mediakitUnits
+  - kind: has_many
+    target: Unit
+    via: dimensionUnits
+  - kind: has_one
+    target: Order
+    via: order
+  - kind: has_one
+    target: SupplierOrdersData
+    via: ordersData
+  - kind: has_one
+    target: OrderLineItemTracker
+    via: orderLineItemTracker
+  - kind: has_one
+    target: AccountSubscription
+    via: adShopSubscription
+- name: SupplierAdsData
+  field_count: 4
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+  - kind: has_many
+    target: SearchTool
+    via: verificationsSearchTools
+- name: SupplierCustomerListItem
+  field_count: 4
+  id_fields:
+  - id
+  - buyer_id
+- name: SupplierCustomersData
+  field_count: 3
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: SupplierFilterData
+  field_count: 3
+  relationships:
+  - kind: has_many
+    target: Buyer
+    via: buyers
+  - kind: has_many
+    target: User
+    via: buyerReps
+- name: SupplierOrdersData
+  field_count: 3
+  id_fields:
+  - id
+  relationships:
+  - kind: has_many
+    target: SearchTool
+    via: searchTools
+- name: SupplierUser
+  field_count: 5
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: User
+    via: user
+  - kind: has_many
+    target: Tag
+    via: tags
+- name: Tag
+  field_count: 3
+  id_fields:
+  - id
+- name: TakeoverBuyer
+  field_count: 4
+  id_fields:
+  - id
+- name: TakeoverSupplier
+  field_count: 5
+  id_fields:
+  - id
+- name: Terms
+  field_count: 7
+  id_fields:
+  - id
+- name: TextData
+  field_count: 4
+- name: Transaction
+  field_count: 14
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Buyer
+    via: buyer
+  - kind: has_one
+    target: Supplier
+    via: supplier
+  - kind: has_one
+    target: PaymentMethod
+    via: paymentMethod
+  - kind: has_one
+    target: CreditCard
+    via: creditCard
+- name: TreeSelectData
+  field_count: 7
+  relationships:
+  - kind: has_many
+    target: TreeSelectOption
+    via: options
+- name: TreeSelectOption
+  field_count: 3
+  relationships:
+  - kind: has_many
+    target: TreeSelectOption
+    via: options
+- name: Unit
+  field_count: 3
+  id_fields:
+  - id
+- name: User
+  field_count: 27
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: File
+    via: profilePicture
+  - kind: has_many
+    target: Notification
+    via: notifications
+  - kind: has_many
+    target: UserNotificationType
+    via: userNotificationTypes
+  - kind: has_many
+    target: Notification
+    via: pendingNotifications
+  - kind: has_many
+    target: Buyer
+    via: buyers
+  - kind: has_many
+    target: BuyerUser
+    via: buyerEdges
+  - kind: has_one
+    target: BuyerUser
+    via: buyerUser
+  - kind: has_many
+    target: Supplier
+    via: suppliers
+  - kind: has_many
+    target: SupplierUser
+    via: supplierEdges
+  - kind: has_one
+    target: SupplierUser
+    via: supplierUser
+  - kind: has_many
+    target: Role
+    via: roles
+  - kind: has_many
+    target: Permission
+    via: permissions
+  - kind: has_many
+    target: Feature
+    via: features
+  - kind: has_many
+    target: Feature
+    via: globalFeatures
+  - kind: has_many
+    target: UserSetting
+    via: settings
+  - kind: has_many
+    target: AuthToken
+    via: authTokens
+- name: UserNotificationType
+  field_count: 6
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: NotificationType
+    via: notificationType
+- name: UserSetting
+  field_count: 4
+  id_fields:
+  - id
+- name: Verification
+  field_count: 10
+  id_fields:
+  - id
+  relationships:
+  - kind: has_one
+    target: Ad
+    via: ad
+  - kind: has_one
+    target: Note
+    via: rejectionNote
+  - kind: has_one
+    target: FormResponse
+    via: formResponse
+- name: WarningMessage
+  field_count: 3

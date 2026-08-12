@@ -8,30 +8,33 @@ description: flytedesk is the campus advertising platform that connects national
   students. For college publishers and campus media organizations, its self-serve
   platform provides tools to build, manage, and monetize their media ecosystem, along
   with an Audience Builder for targeting. flytedesk is backed by Techstars. The company
-  exposes no public developer API; this profile tracks its public web presence and
-  security posture for the API Evangelist network.
+  publishes no developer portal, no API reference and no SDK, but it does operate a
+  first-party GraphQL API at api.app.flytedesk.com with introspection enabled, so its
+  full 374-type schema is publicly readable and is captured here.
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: quote-only
+  onboarding: sales
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Sales-led
+  confidence: medium
+  source:
+  - https://www.flytedesk.com/
+  - https://rfp.flytedesk.com/
+  generated: '2026-08-12'
+  method: searched
 image: https://cdn.prod.website-files.com/69a96def413819b7db64de8c/69c65e8608f9f4200cad70f3_Homepage_1.png
 url: https://raw.githubusercontent.com/api-evangelist/flytedesk/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: first-party GraphQL contract captured by anonymous introspection
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-12'
 tags:
 - Company
 - Advertising
@@ -40,7 +43,44 @@ tags:
 - College Advertising
 - Marketing
 - AdTech
-apis: []
+- GraphQL
+- Media Buying
+- Higher Education
+apis:
+- name: FlyteDesk GraphQL API
+  description: >-
+    The first-party GraphQL API behind the flytedesk application — the campus advertising
+    marketplace covering suppliers (campus media organizations), campuses, buyers,
+    audiences, ad shops, campaigns, ads, orders, invoicing and finance tracking. It is not
+    a documented developer API: FlyteDesk publishes no portal, no reference and no SDK,
+    and credentials are issued by invitation through the product. It is captured here
+    because introspection is enabled on the production endpoint, so the complete schema
+    (374 types, 37 queries, 25 mutations) is publicly readable and machine-usable.
+  humanURL: https://app.flytedesk.com/
+  baseURL: https://api.app.flytedesk.com/api/graphql
+  tags:
+  - GraphQL
+  - Advertising
+  - Campus Media
+  properties:
+  - type: GraphQL
+    url: graphql/flytedesk-graphql.graphql
+  - type: GraphQLIntrospection
+    url: graphql/flytedesk-introspection.json
+  - type: Authentication
+    url: authentication/flytedesk-authentication.yml
+  - type: Conventions
+    url: conventions/flytedesk-conventions.yml
+  - type: ErrorCatalog
+    url: errors/flytedesk-problem-types.yml
+  - type: DataModel
+    url: data-model/flytedesk-data-model.yml
+  - type: RateLimits
+    url: rate-limits/flytedesk-rate-limits.yml
+  - type: Conformance
+    url: conformance/flytedesk-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/flytedesk-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -49,20 +89,42 @@ maintainers:
 common:
 - type: DomainSecurity
   url: security/flytedesk-domain-security.yml
+- type: LLMsTxt
+  url: llms/flytedesk-llms.txt
+- type: Packages
+  url: packages/flytedesk-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Components
+  url: components/flytedesk-components.yml
+- type: Plans
+  url: plans/flytedesk-plans-pricing.yml
 - type: Website
   url: https://www.flytedesk.com/
 - type: Blog
   url: https://www.flytedesk.com/blog
 - type: PrivacyPolicy
   url: https://www.flytedesk.com/privacy-policy
+- type: TermsOfService
+  url: https://www.flytedesk.com/terms-and-conditions
 - type: Support
   url: https://www.flytedesk.com/contact
+- type: HelpCenter
+  url: https://www.flytedesk.com/faq
 - type: GitHubOrganization
-  url: https://github.com/flytedesk
+  url: https://github.com/Flytedesk
 - type: Login
-  url: https://app.flytedesk.com/
+  url: https://platform.flytedesk.com/auth/users/sign_in
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 20
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Round 1 recorded "The company exposes no public developer API." That was wrong. STEP 0b
+    contract discovery found the API base https://api.app.flytedesk.com in the app.flytedesk.com
+    SPA bundle; POSTing a GraphQL introspection query to /api/graphql returns HTTP 200
+    anonymously with the full 374-type schema. FlyteDesk also serves a real llms.txt at
+    www.flytedesk.com/llms.txt and publishes three packaged Agent Skills in
+    github.com/Flytedesk/flytedesk-skills. No OpenAPI, no MCP server, no agent card, no
+    /.well-known/ document, no pricing page, no status page and no SDK for its own API.

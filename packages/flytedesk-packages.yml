@@ -1,0 +1,145 @@
+generated: '2026-08-12'
+method: searched
+source: https://github.com/orgs/Flytedesk/repositories + rubygems.org and registry.npmjs.org metadata endpoints
+note: >-
+  FlyteDesk publishes NO client library for its own API. Its GraphQL endpoint
+  (https://api.app.flytedesk.com/api/graphql) has no SDK in any registry — npm, PyPI,
+  RubyGems, Maven Central, NuGet, pkg.go.dev, Packagist and crates.io were all searched
+  for "flytedesk" and returned nothing API-related. What the company does publish is a
+  handful of general-purpose Ruby/JS engineering libraries out of its GitHub org; those
+  are recorded below for completeness, flagged honestly, and are NOT SDKs. Because there
+  is no first-party SDK for the FlyteDesk API, apis.yml carries a Packages pointer but
+  deliberately does NOT carry an SDKs pointer.
+sdk_for_flytedesk_api: false
+package_count: 4
+packages:
+- name: debounced
+  registry: rubygems
+  url: https://rubygems.org/gems/debounced
+  source: https://github.com/Flytedesk/debounced
+  language: ruby
+  official: true
+  is_api_client: false
+  description: Scalable debounce service for Ruby.
+  version: 2.0.0
+  published: '2026-06-11'
+  note: >-
+    First-party: the gem's homepage_uri and source_code_uri both point at
+    github.com/flytedesk/debounced, and the repo is an original (not a fork) in the
+    Flytedesk org. General-purpose infrastructure library, not a FlyteDesk API client.
+- name: pack_api
+  registry: rubygems
+  url: https://rubygems.org/gems/pack_api
+  source: https://github.com/Flytedesk/pack_api
+  language: ruby
+  official: true
+  is_api_client: false
+  description: Building blocks for implementing APIs around domain models.
+  version: 1.0.17
+  published: '2026-06-09'
+  note: >-
+    First-party: gem homepage_uri is github.com/flytedesk/pack_api and the repo is an
+    original in the Flytedesk org. Despite the name it is a server-side Rails toolkit for
+    BUILDING APIs, not a client for the FlyteDesk API.
+- name: automatic_namespaces
+  registry: rubygems
+  url: https://rubygems.org/gems/automatic_namespaces
+  source: https://github.com/Flytedesk/automatic_namespaces
+  language: ruby
+  official: false
+  is_api_client: false
+  description: Modify Rails autoloading rules to treat all files in a package directory as belonging to a given namespace.
+  version: 1.0.1
+  published: '2026-04-15'
+  note: >-
+    Not marked official: the published gem's homepage_uri is github.com/gap777/automatic_namespaces
+    (a maintainer's personal account) and the RubyGems owner is the individual, not the
+    company. The Flytedesk org hosts a copy of the code.
+- name: flaky
+  registry: rubygems
+  url: https://rubygems.org/gems/flaky
+  source: https://github.com/Flytedesk/flaky
+  language: ruby
+  official: false
+  is_api_client: false
+  description: Tools to assist in analyzing CI runs to find and fix flaky automated tests.
+  version: 0.1.3
+  published: '2015-04-29'
+  note: >-
+    Name collision, not a FlyteDesk release. The `flaky` gem on RubyGems is owned by
+    bootstraponline and last published in 2015; FlyteDesk's repo of the same name is a
+    separate 2026 project that is NOT published to any registry, so there is no version to
+    record for the FlyteDesk artifact.
+not_published:
+- name: stimulus-library
+  registry: npm
+  official: false
+  version: null
+  published: null
+  note: >-
+    Excluded from the count. github.com/Flytedesk/stimulus-library is an explicit GitHub
+    fork of Sub-Xaero/stimulus-library; the npm package (1.7.0, 2026-04-09) belongs to the
+    upstream author, not FlyteDesk.
+- name: heroku-buildpack-libvips
+  registry: null
+  official: false
+  version: null
+  published: null
+  note: >-
+    Excluded. Explicit fork of mariochavez/heroku-buildpack-libvips; a Heroku buildpack has
+    no package registry entry.
+- name: OAuth2_RubyOnRails
+  registry: null
+  official: false
+  version: null
+  published: null
+  note: Excluded. Explicit fork of IntuitDeveloper/OAuth2_RubyOnRails — an Intuit sample app.
+cdn_distributed:
+- name: 3p.js
+  registry: cdn
+  url: https://digital.flytedesk.com/js/3p.js
+  official: true
+  is_api_client: false
+  version: null
+  published: null
+  note: >-
+    First-party ad-serving script, referenced by absolute URL from FlyteDesk's own app
+    bundle. No registry entry exists to query, and the URL carries no version segment — the
+    distribution is unpinned and floats to latest, so a consumer cannot tell what they are
+    loading. Host returns 403 (CloudFront WAF) to our probe. See
+    components/flytedesk-components.yml.
+- name: adshop/head.js
+  registry: cdn
+  url: https://digital.flytedesk.com/js/adshop/head.js
+  official: true
+  is_api_client: false
+  version: null
+  published: null
+  note: >-
+    First-party Ad Shop storefront loader. Same shape: no registry, unpinned URL, 403 from
+    CloudFront on probe.
+registries_searched:
+- registry: npm
+  query: flytedesk
+  result: no first-party packages
+- registry: rubygems
+  query: flytedesk org repos resolved individually
+  result: 2 first-party gems, neither an API client
+- registry: pypi
+  query: flytedesk
+  result: none
+- registry: maven-central
+  query: flytedesk
+  result: none
+- registry: nuget
+  query: flytedesk
+  result: none
+- registry: pkg.go.dev
+  query: flytedesk
+  result: none
+- registry: packagist
+  query: flytedesk
+  result: none
+- registry: crates.io
+  query: flytedesk
+  result: none

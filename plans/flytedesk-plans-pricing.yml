@@ -1,0 +1,44 @@
+generated: '2026-08-12'
+method: searched
+source: https://www.flytedesk.com/
+note: >-
+  FlyteDesk publishes NO pricing. There is no pricing page, no plan tiers, no rate card
+  and no self-service sign-up anywhere on the public site — the site navigation and footer
+  carry only "Book a call", "Contact us" and "Submit an RFP". Buying is a sales motion:
+  brands submit an RFP at rfp.flytedesk.com and campus publishers are onboarded by
+  FlyteDesk. This is an honest zero, recorded rather than omitted.
+plan_count: 0
+plans: []
+pricing_model: quote-only
+self_service_signup: false
+free_tier: false
+trial: false
+api_pricing:
+  published: false
+  note: >-
+    The GraphQL endpoint is the first-party application backend; there is no API product,
+    no metering, no API plan and no developer console.
+sales_entry_points:
+- name: Submit an RFP
+  url: https://rfp.flytedesk.com/
+  audience: brands and agencies
+- name: Book a call / Contact
+  url: https://www.flytedesk.com/contact
+  audience: brands and campus media
+- name: Audience Builder
+  url: https://audience.flytedesk.com/
+  audience: brands — campus audience targeting tool, no price shown
+evidence:
+- url: https://www.flytedesk.com/pricing
+  status: 404
+  checked: '2026-08-12'
+- url: https://www.flytedesk.com/
+  status: 200
+  note: No pricing link in navigation or footer.
+  checked: '2026-08-12'
+- url: https://www.flytedesk.com/llms.txt
+  status: 200
+  note: >-
+    FlyteDesk's own llms.txt lists About, Brands, Insights, Audience Builder, RFP,
+    Politics, Platform, Resource Hub, Our Programming and Contact — no pricing entry.
+  checked: '2026-08-12'

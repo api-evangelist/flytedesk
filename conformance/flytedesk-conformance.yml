@@ -1,0 +1,86 @@
+generated: '2026-08-12'
+method: derived
+source: graphql/flytedesk-graphql.graphql + live probes of https://api.app.flytedesk.com/api/graphql + https://www.flytedesk.com/
+note: >-
+  Cross-cutting standards assertions. FlyteDesk publishes no compliance page, no trust
+  center and no certification claims, so every entry below is either derived from the
+  live contract or recorded as a negative. Negatives are data. No Compliance pointer is
+  emitted in apis.yml because FlyteDesk publishes no compliance programme.
+conformance_count: 12
+conformance:
+- id: graphql
+  conforms: true
+  evidence: >-
+    A spec-compliant GraphQL service at https://api.app.flytedesk.com/api/graphql —
+    full introspection returns 374 types, Query/Mutation/Subscription roots and the
+    standard @include/@skip/@deprecated directives. Server is Laravel Lighthouse.
+- id: graphql-introspection
+  conforms: true
+  evidence: >-
+    Introspection is enabled and answers an anonymous POST with HTTP 200. The complete
+    schema is publicly readable without credentials.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document exists. /openapi.json, /openapi.yaml, /swagger.json,
+    /v1/openapi.json, /api-docs, /docs and /redoc were probed on www.flytedesk.com,
+    flytedesk.com, api.app.flytedesk.com, app.flytedesk.com, platform.flytedesk.com,
+    audience.flytedesk.com and rfp.flytedesk.com — all 404, or an SPA HTML shell.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document and no documented webhook catalogue. The schema declares a
+    Subscription root and every response carries an
+    extensions.lighthouse_subscriptions block, so a realtime surface exists internally,
+    but it is undocumented and no event contract is published.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 404 on every host. There is no
+    authorization server, no client registration and no token endpoint. Authentication is
+    a first-party JWT issued through the product's own login mutation.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host.
+- id: rfc9457
+  conforms: false
+  evidence: >-
+    Errors use the GraphQL errors array with a proprietary extensions.category
+    discriminator and HTTP 200, not application/problem+json. See
+    errors/flytedesk-problem-types.yml.
+- id: rfc8594
+  conforms: false
+  evidence: >-
+    No Sunset or Deprecation response headers. One schema field carries the GraphQL
+    @deprecated directive with the default "No longer supported" reason and no date.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No idempotency key header is accepted and no mutation input carries a request key.
+    See conventions/flytedesk-conventions.yml.
+- id: pagination
+  conforms: true
+  evidence: >-
+    Consistent offset pagination across 12 collection queries via Lighthouse
+    first/page arguments and 18 *Paginator types returning PaginatorInfo. Not
+    cursor-based, but uniformly applied.
+- id: rfc9116
+  conforms: false
+  evidence: >-
+    No /.well-known/security.txt on any FlyteDesk host. See
+    well-known/flytedesk-well-known.yml and
+    security/flytedesk-vulnerability-disclosure.yml.
+- id: llmstxt
+  conforms: true
+  evidence: >-
+    https://www.flytedesk.com/llms.txt returns HTTP 200 text/plain with a valid llms.txt
+    document — H1, blockquote summary, and sectioned link lists. Saved verbatim to
+    llms/flytedesk-llms.txt.
+compliance_claims:
+  published: false
+  certifications: []
+  evidence: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP, GDPR or CCPA programme page exists on
+    flytedesk.com. The only governance document published is the privacy policy at
+    https://www.flytedesk.com/privacy-policy and the terms at
+    https://www.flytedesk.com/terms-and-conditions.

@@ -1,0 +1,59 @@
+generated: '2026-08-12'
+method: derived
+source: graphql/flytedesk-graphql.graphql + live response headers from https://api.app.flytedesk.com/api/graphql
+note: >-
+  Derived from the introspected GraphQL schema and the live CORS/response headers on the
+  endpoint. FlyteDesk publishes no authentication documentation of any kind — there is no
+  developer portal, no API reference and no auth page to search — so everything below is
+  observed behaviour, not a documented contract. There is NO API-key programme, NO OAuth
+  2.0 authorization server (/.well-known/oauth-authorization-server 404s on every host)
+  and NO OpenID Connect discovery document.
+auth_scheme_count: 1
+schemes:
+- id: jwt_bearer_session
+  type: http
+  scheme: bearer
+  bearer_format: JWT
+  location: header
+  header: Authorization
+  description: >-
+    The application authenticates with a JWT. The endpoint's
+    access-control-expose-headers advertises X-JwtBearerToken, and
+    access-control-allow-headers accepts Authorization, X-Auth-Token and appsessionid,
+    which is how the SPA presents it. There is no self-service way for a third party to
+    obtain one — see credential_issuance below.
+  evidence:
+    url: https://api.app.flytedesk.com/api/graphql
+    http_status: 200
+    access_control_expose_headers: X-JwtBearerToken, AppVersion, AppVersionMismatch, Content-Disposition
+    access_control_allow_headers: Content-Type, X-Auth-Token, Origin, appsessionid, Authorization, AppVersion, Content-Disposition, x-playwright-test
+session:
+  cookie: session-uuid
+  attributes: httponly; path=/; Max-Age=3600
+  credentials_mode: access-control-allow-credentials true
+  note: A one-hour session-uuid cookie is set on every request, including anonymous ones.
+credential_issuance:
+  self_service: false
+  mechanism: >-
+    Credentials are created through the product, not a developer console. The schema
+    exposes loginUserMutation, sendResetPasswordEmailMutation, resetPasswordMutation,
+    registerUserFromBuyerInvite and registerUserFromSupplierInvite — account creation is
+    invite-driven, initiated by FlyteDesk or an existing buyer/supplier.
+  developer_console: null
+  api_keys: false
+  oauth2: false
+  oidc: false
+  mtls: false
+gating_behaviour:
+  introspection: anonymous, HTTP 200 — the full schema is readable without credentials
+  data: >-
+    gated but soft — an anonymous `{ me { id } }` returns HTTP 200 with
+    `{"data":{"me":null}}` rather than an authorization error, so unauthorized access is
+    signalled as a null resolution rather than a 401/403 or a GraphQL error extension.
+cors:
+  allow_origin: https://app.flytedesk.com
+  allow_credentials: true
+  allow_methods: POST, GET, OPTIONS, PATCH, PUT, DELETE
+  note: >-
+    A single hard-coded allowed origin. Browser-based third-party clients are excluded by
+    design; this is a first-party application backend.

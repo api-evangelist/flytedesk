@@ -1,0 +1,3966 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+
+enum AdGroupMetric {
+  IMPRESSIONS
+  VIEWABLE_IMPRESSIONS
+  FULL_IMPRESSIONS
+}
+
+
+enum AdGroupRateType {
+  FLAT_RATE
+  CPM
+}
+
+
+enum AdGroupStatus {
+  ACTIVE
+  COMPLETE
+  PENDING
+  DISABLED
+}
+
+
+enum AdStatus {
+  CANCELED
+  CREATIVE_PENDING
+  CREDITED
+  MAKE_GOOD
+  PENDING_CREATIVE_APPROVAL
+  PENDING_VERIFICATION_APPROVAL
+  READY
+  VERIFICATION_REJECTED
+  UNVERIFIED
+  VERIFIED
+}
+
+
+enum BillDocumentStatus {
+  CREATING
+  PAID
+  PENDING
+  VOID
+}
+
+
+enum BillingPreference {
+  PREPAID
+  POSTPAID
+  PREPAID_IN_FULL
+}
+
+
+enum BrowseProductSort {
+  PRICE_ASC
+  PRICE_DESC
+}
+
+
+enum BuyerRoleType {
+  BUYER_ADMIN
+  BUYER_EDIT
+  BUYER_COLLABORATE
+  BUYER_VIEW
+}
+
+
+enum CampaignStatus {
+  PENDING_APPROVAL
+  ACTIVE
+  COMPLETE
+  CANCELED
+}
+
+
+enum CampaignType {
+  NATIONAL
+  LOCAL
+}
+
+
+enum ContactType {
+  PRIMARY
+  BILLING
+  ADVISOR
+  CREATIVE
+}
+
+
+enum CreativeStatus {
+  ACCEPTED
+  PENDING
+  PENDING_BUYER
+  PENDING_SUPPLIER
+  REJECTED
+}
+
+
+enum CustomerType {
+  LOCAL
+  NATIONAL
+  ON_CAMPUS
+  NON_PROFIT
+}
+
+
+enum DateCalendarMode {
+  multiple
+  range
+  single
+}
+
+
+enum DeprecatedCampaignType {
+  NATIONAL
+  LOCAL
+  DEPRECATED
+}
+
+
+enum DiscountType {
+  PERCENT
+  AMOUNT
+}
+
+
+enum DocumentLineItemType {
+  SALE
+  DISCOUNT
+  FEE
+}
+
+
+enum DocumentStatus {
+  Paid
+  Pending
+}
+
+
+enum DocumentType {
+  Invoice
+  Bill
+}
+
+
+enum FormFieldType {
+  BOOLEAN
+  CURRENCY
+  DATE
+  DATE_RANGE
+  ICON
+  INTEGER
+  MULTI_FILE
+  NO_INPUT
+  NUMBER
+  SINGLE_FILE
+  TEXT
+  TEXTAREA
+  WYSIWYG
+}
+
+
+enum InviteRoleType {
+  BUYER_ADMIN
+  BUYER_EDIT
+  BUYER_COLLABORATE
+  BUYER_VIEW
+  PUB_ADMIN
+  PUB_EDIT
+  PUB_COLLABORATE
+  PUB_VIEW
+  EDITORIAL_ADMIN
+}
+
+
+enum InvoiceDocumentStatus {
+  CHARGED
+  FAILED_PAYMENT
+  PAID
+  PARTIALLY_PAID
+  DRAFT
+  SENT
+  VOID
+}
+
+
+enum MetricAggregate {
+  SUM
+  COUNT
+  GROUP_CONCAT
+  DATE
+  WEEK
+  MONTH
+  YEAR
+  NONE
+}
+
+
+enum MetricFormat {
+  currency
+  date
+  datetime
+  float
+  integer
+  month
+  percent
+  week
+  year
+}
+
+
+enum NotificationLevel {
+  ERROR
+  INFO
+  SUCCESS
+  WARNING
+}
+
+
+enum OrderApprovalStatus {
+  APPROVED
+  CHANGES_REQUESTED
+  PENDING
+  REJECTED
+}
+
+"Aggregate functions when ordering by a relation without specifying a column."
+
+enum OrderByRelationAggregateFunction {
+  "Amount of items."
+  COUNT
+}
+
+"Aggregate functions when ordering by a relation that may specify a column."
+
+enum OrderByRelationWithColumnAggregateFunction {
+  "Average."
+  AVG
+  "Minimum."
+  MIN
+  "Maximum."
+  MAX
+  "Sum."
+  SUM
+  "Amount of items."
+  COUNT
+}
+
+
+enum OrderLineItemStatus {
+  APPLIED
+  CANCELED
+  INVOICED
+  PARTIALLY_INVOICED
+  INVOICE_SCHEDULED
+  UNAPPLIED
+  UNINVOICED
+}
+
+
+enum OrderLineItemType {
+  AD
+  DISCOUNT
+}
+
+
+enum OrderStatus {
+  APPROVED
+  CANCELED
+  CHANGES_REQUESTED
+  COMPLETE
+  PENDING
+  REJECTED
+  ON_HOLD
+}
+
+
+enum RateClass {
+  Standard
+  Local
+  Super
+}
+
+
+enum RateSheetType {
+  FLAT_RATE
+  PER_INTERVAL
+  PER_DAY
+  PER_QUANTITY
+  IMPRESSIONS
+}
+
+
+enum SearchDataType {
+  BOOLEAN
+  CURRENCY
+  DATE
+  DATETIME
+  FLOAT
+  INTEGER
+  MAP
+  PERCENT
+  PERCENT100
+  RANK
+  STRING
+}
+
+
+enum SearchToolType {
+  MANAGED
+  UNMANAGED
+  TOOL
+}
+
+"Directions for ordering a list of records."
+
+enum SortOrder {
+  "Sort records in ascending order."
+  ASC
+  "Sort records in descending order."
+  DESC
+}
+
+
+enum SubscriptionBillingPeriod {
+  MONTHLY
+  ANNUAL
+  FOREVER
+}
+
+
+enum SubscriptionTypeEnum {
+  AD_SHOP
+}
+
+
+enum SummaryStatType {
+  AD_PENDING_APPROVAL
+  NATIONAL_AD_ACTIVE
+  ORDER_PENDING
+  AD_CREATIVE_PENDING
+  AD_UNVERIFIED
+}
+
+
+enum SupplierRoleType {
+  PUB_ADMIN
+  PUB_EDIT
+  PUB_COLLABORATE
+  PUB_VIEW
+  EDITORIAL_ADMIN
+}
+
+
+enum TagType {
+  THIRD_PARTY
+  STATIC
+  PLATFORM
+}
+
+
+enum TransactionStatus {
+  PENDING
+  COMPLETE
+  FAILED
+  VOID
+  PARTIAL_REFUND
+}
+
+
+enum TransactionType {
+  Payment
+  Bill
+  Transfer
+  Credit
+  Discount
+  Sale
+  Subscription
+}
+
+"Specify if you want to include or exclude trashed results from a query."
+
+enum Trashed {
+  "Only return trashed results."
+  ONLY
+  "Return both trashed and non-trashed results."
+  WITH
+  "Only return non-trashed results."
+  WITHOUT
+}
+
+
+enum UnitType {
+  DIMENSION
+  MEDIAKIT
+}
+
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+
+input AdInput {
+  status: AdStatus
+  start_date: DateTime
+  end_date: DateTime
+  impressions: Int
+  is_paused: Boolean
+  keyword_targeting: JSON
+  creative_phase: String
+}
+
+
+input AdShopInput {
+  supplier_id: String
+  is_enabled: Boolean
+  theme_color: String
+  use_logo_on_billing_docs: Boolean
+  allow_credit_card_payment: Boolean
+  require_verifications: Boolean
+  shop_name: String
+  description: String
+  email: String
+  phone: String
+  header_photo_id: String
+  profile_photo_id: String
+  policies_file_id: String
+}
+
+
+input AddressInput {
+  name: String
+  attn: String
+  address: String
+  address2: String
+  address3: String
+  city: String
+  state: String
+  zip_code: String
+  country: String
+}
+
+
+input AttributeColumnInput {
+  name: String!
+  width: Int
+  component: String
+  props: JSON
+}
+
+
+input BulkCreativeInput {
+  append: Boolean
+  formResponse: FormResponseInput!
+}
+
+
+input BulkRescheduleInput {
+  start_date: DateTime!
+  end_date: DateTime!
+}
+
+
+input BulkUpdatePricingInput {
+  impressions: Int
+  buyer_price: Currency
+  supplier_price: Currency
+  booking_type: String
+}
+
+
+input BuyerInput {
+  buyer_company: String
+  buyer_phone: String
+  campaign_type_id: Int
+  primaryAddress: AddressInput
+  billingAddress: AddressInput
+}
+
+
+input BuyerOrderInput {
+  rate_class: RateClass
+  paymentMethod: PaymentMethodInput
+  invoice_message: String
+  credit_card_id: ID
+  notes: String
+  billingAddress: AddressInput
+  stripeToken: JSON
+}
+
+
+input BuyerSignupInput {
+  email: String!
+  password: String!
+  buyer_first_name: String!
+  buyer_last_name: String!
+  buyer_company: String!
+  primaryAddress: AddressInput!
+  buyer_phone: String!
+  billing_email: String
+  campaign_type_id: Int
+  buyer_accept_terms: Boolean!
+  business_type: String
+  supplier_id: String
+}
+
+
+input CampaignInput {
+  status: CampaignStatus
+}
+
+
+input CollectionInput {
+  property_id: ID
+  name: String
+  is_super: Boolean
+  description: String
+  typeEdges: [String]
+  is_enabled: Boolean
+  reachType: ReachTypeInput
+  reaches: [ReachInput]
+  is_reach_applicable: Boolean
+  dimension: DimensionInput
+  schedule: ScheduleInput
+}
+
+
+input ComparisonInput {
+  name: String!
+  filter: JSON!
+  sort: [SortInput!]
+}
+
+
+input ComparisonReportInput {
+  dimensions: [ReportDimensionInput!]!
+  metrics: [ReportMetricInput!]!
+  comparisons: [ComparisonInput!]!
+  filter: JSON
+  sort: [SortInput!]
+}
+
+
+input ContactInput {
+  type: ContactType!
+  email: String
+  first_name: String
+  last_name: String
+  phone: String
+}
+
+
+input ContactTypeInput {
+  contactType: ContactType!
+  addContact: Boolean!
+}
+
+
+input CreateAudienceInput {
+  name: String
+}
+
+
+input CreateBillInput {
+  payment_preference: BillingPreference
+  transaction_date: DateTime
+}
+
+
+input CreateCustomerInput {
+  buyer: BuyerInput!
+  customer_type: CustomerType
+  contacts: [ContactInput!]!
+}
+
+
+input CreateDocumentLineItemInput {
+  id: ID
+  type: DocumentLineItemType!
+  sku: String
+  name: String!
+  description: String
+  amount: Currency!
+  quantity: Int!
+  date: DateTime!
+  end_date: DateTime
+  sourceable_type: String
+  sourceable_id: String
+}
+
+
+input CreateFormInput {
+  name: String!
+  variations: Int
+  category: String!
+  fields: [FormFieldInput!]!
+}
+
+
+input CreateInvoiceInput {
+  payment_preference: BillingPreference
+  transaction_date: DateTime
+  terms_id: ID
+  lineItemIds: [ID!]
+  start_date: DateTime
+  end_date: DateTime
+  due_date: DateTime
+  notes: String
+  logo_id: ID
+  ignoreWarnings: Boolean
+}
+
+
+input CreateNationalTagPathInput {
+  sku: String
+  name: String!
+  quantity_unit: String
+  is_available: Boolean
+  send_verification_notification: Boolean
+  medium_super_tag_id: ID!
+  priority: Int
+  creative_form_id: ID
+  verification_form_id: ID
+}
+
+
+input CreativeInput {
+  display_name: String
+  last_downloaded_at: DateTime
+  formResponse: FormResponseInput
+}
+
+
+input CreditCardInput {
+  stripeToken: JSON
+  token: String
+  isPrimary: Boolean
+}
+
+
+input DimensionInput {
+  id: ID
+  width: Float
+  height: Float
+  width_ratio: Float
+  height_ratio: Float
+  max_width: Float
+  max_height: Float
+  depth: Float
+  unit: String
+}
+
+
+input DiscountInput {
+  name: String
+  code: String
+  type: DiscountType
+  value: Currency
+  start_date: DateTime
+  end_date: DateTime
+  status: Boolean
+  uses: Int
+  notes: String
+}
+
+
+input FeatureEntityInput {
+  enabled: Boolean!
+  id: ID!
+  model: String!
+}
+
+
+input FileInput {
+  id: ID!
+}
+
+
+input FormFieldInput {
+  id: ID
+  name: String!
+  type: FormFieldType!
+  label: String!
+  placeholder: String
+  required: Boolean!
+  required_group: String
+  allow_downloads: Boolean
+  description: String
+  buyer_description: String
+  show_buyer_description: Boolean
+  default_value: JSON
+  position: Int
+}
+
+
+input FormFieldResponseInput {
+  form_field_id: ID!
+  name: String!
+  value: JSON
+  merge: Boolean
+}
+
+
+input FormResponseInput {
+  form_id: ID!
+  fieldResponses: [FormFieldResponseInput!]!
+}
+
+
+input FulfillmentMethodInput {
+  name: String!
+  display_name: String
+  description: String
+  requires_assets: Boolean
+  requires_text: Boolean
+  requires_shipping: Boolean
+  requires_printing: Boolean
+  requires_acceptance: Boolean
+  recommendedFileTypes: [String]
+  shipping_address: String
+  deadline_days: Int
+  price: Float
+}
+
+
+input InvoicePaymentInput {
+  amount: Currency!
+  paymentMethod: PaymentMethodInput!
+  description: String
+  payment_date: DateTime
+}
+
+
+input KeyValue {
+  key: String!
+  value: String!
+  hidden: Boolean
+  showMetric: Boolean
+}
+
+
+input LogInInput {
+  email: String
+  password: String
+}
+
+
+input MediumInput {
+  name: String
+  is_super: Boolean
+  typeEdges: [String]
+  is_enabled: Boolean
+  is_template_locked: Boolean
+}
+
+
+input NoteInput {
+  id: ID
+  title: String
+  description: String
+  text: String
+}
+
+
+input NoteUpdateInput {
+  title: String
+  description: String
+  text: String
+}
+
+"Allows ordering a list of records."
+
+input OrderByClause {
+  "The column that is used for ordering."
+  column: String!
+  "The direction that is used for ordering."
+  order: SortOrder!
+}
+
+
+input OrderCreditInput {
+  amount: Currency!
+  lineItems: [OrderLineItemPaymentInput!]
+  description: String
+}
+
+
+input OrderInput {
+  status: OrderStatus
+  invoice_message: String
+  rate_class: RateClass
+  paymentMethod: PaymentMethodInput
+  approved_rate_class: RateClass
+  approvedPaymentMethod: PaymentMethodInput
+}
+
+
+input OrderLineItemInput {
+  booking_type: String
+  buyer_price: Currency
+  status: OrderLineItemStatus
+  supplier_price: Currency
+}
+
+
+input OrderLineItemPaymentInput {
+  id: ID!
+  amount: Currency
+}
+
+
+input OrderPaymentInput {
+  amount: Currency!
+  lineItems: [OrderLineItemPaymentInput!]!
+  paymentMethod: PaymentMethodInput!
+  description: String
+  payment_date: DateTime
+}
+
+
+input PaymentMethodInput {
+  id: ID
+  name: String
+}
+
+
+input ProductInput {
+  collection_id: ID
+  campus_id: ID
+  sku: String
+  name: String
+  auto_inject: JSON
+  typeEdges: [String]
+  is_enabled: Boolean
+  is_super: Boolean
+  description: String
+  primary_photo_id: String
+  photos: [ID]
+  additionalFiles: [ID]
+  additional_information: String
+  additional_attribute_columns: [String!]
+  fulfillmentMethods: [String!]
+  variants: [VariantInput!]
+}
+
+
+input ProductVariantGroupDateInput {
+  start_date: DateTime!
+  end_date: DateTime
+  type: RateSheetType!
+  quantity: Int!
+}
+
+
+input ProductVariantGroupInput {
+  productVariantId: ID!
+  dates: [ProductVariantGroupDateInput!]!
+  fulfillmentMethodId: ID
+}
+
+
+input PropertyInput {
+  medium_id: ID
+  name: String
+  is_super: Boolean
+  typeEdges: [String]
+  is_enabled: Boolean
+  are_photos_visible: Boolean
+  has_dimensions: Boolean
+  is_digital_content: Boolean
+  website_url: String
+  digital_seen_on: String
+  min_impressions: Int
+  min_days: Int
+  blocked_content: String
+  schedule_type_id: ID
+  scheduleType: ScheduleTypeInput
+}
+
+
+input QuantityLimitInput {
+  min: Float
+  max: Float
+  increment: Float
+  unit: String
+}
+
+
+input RateInput {
+  id: ID
+  rate_class: RateClass
+  quantity: Int
+  price: Float
+}
+
+
+input RateSheetInput {
+  id: ID
+  type: RateSheetType
+  date_start: DateTime
+  date_end: DateTime
+  is_default: Boolean
+  quantity: Int
+  rates: [RateInput!]
+}
+
+
+input ReachInput {
+  id: ID
+  is_primary: Boolean
+  value: Int
+  date_start: String
+  date_end: String
+}
+
+
+input ReachTypeInput {
+  id: ID
+  value: String
+}
+
+
+input RegisterUserFromInviteInput {
+  invite_id: ID!
+  first_name: String!
+  last_name: String!
+  user_email: String!
+  user_phone: String!
+  user_password: String!
+  password_confirmation: String!
+}
+
+
+input ReportDimensionInput {
+  keyField: KeyValue!
+  labelField: KeyValue
+  relations: [String!]
+  allowMultipleCardinality: Boolean
+  aggregate: MetricAggregate
+  format: MetricFormat
+  sortable: Boolean
+}
+
+
+input ReportExportInput {
+  reportId: String!
+  reportType: String!
+  fileLabel: String!
+  dimension: ReportDimensionInput!
+  metrics: JSON
+  sort: JSON
+  filter: JSON
+  comparisons: JSON
+  settings: JSON
+  filterToolsState: JSON
+}
+
+
+input ReportMetricInput {
+  name: String!
+  field: String
+  raw: String
+  aggregate: MetricAggregate
+  format: MetricFormat
+  sortable: Boolean
+  exportOnly: Boolean
+}
+
+
+input ResetPasswordInput {
+  token: String!
+  email: String!
+  password: String!
+  password_confirmation: String!
+}
+
+
+input SavePlacementSettingInput {
+  name: String!
+  template_id: String
+  settings: JSON
+  is_super: Boolean
+}
+
+
+input ScheduleInput {
+  schedule_type_id: ID!
+  dates: [String]
+  quantityLimit: QuantityLimitInput
+}
+
+
+input ScheduleTypeInput {
+  id: ID!
+}
+
+
+input SendSupplierInviteInput {
+  email: String!
+  role: SupplierRoleType!
+  contactType: String
+}
+
+
+input SortInput {
+  column: String!
+  order: SortOrder!
+}
+
+
+input SubLineItemInput {
+  name: String!
+  description: String
+  amount: Currency!
+}
+
+
+input SubscriptionRegisterPaymentMethodInput {
+  card: CreditCardInput!
+}
+
+
+input SubscriptionRequestUpgradeInput {
+  subscriptionTypeId: ID!
+  message: String!
+  startDate: Date
+  onboardingPeriod: String
+}
+
+
+input SubscriptionUpdateInput {
+  payment_method_id: ID
+  auto_renew: Boolean
+}
+
+
+input SuperTagInput {
+  id: ID
+  name: String!
+}
+
+
+input SupplierBulkInvoiceInput {
+  start_date: Date!
+  end_date: Date!
+  transaction_date: Date!
+}
+
+
+input SupplierInput {
+  name: String
+  check_name: String
+  billing_notes: String
+  primaryAddress: AddressInput
+  shippingAddress: AddressInput
+  billingAddress: AddressInput
+}
+
+
+input SupplierRegistrationInfo {
+  campus_id: ID!
+  name: String!
+  first_name: String!
+  last_name: String!
+  user_email: String!
+  user_phone: String
+  user_password: String!
+  password_confirmation: String!
+}
+
+
+input UnitInput {
+  id: ID
+  name: String
+}
+
+
+input UpdateAudienceInput {
+  name: String
+  campuses: [ID!]
+  selections: [ID!]
+  available_selections: [ID!]
+}
+
+
+input UpdateCustomerInput {
+  is_active: Boolean
+  contacts: [ContactInput!]
+  billing_preference: BillingPreference
+  type: CustomerType
+}
+
+
+input UpdateDocumentLineItemInput {
+  type: DocumentLineItemType
+  sku: String
+  name: String
+  description: String
+  amount: Currency
+  quantity: Int
+  date: DateTime
+  end_date: DateTime
+  sourceable_type: String
+  sourceable_id: String
+}
+
+
+input UpdateFormInput {
+  name: String
+  variations: Int
+  fields: [FormFieldInput!]
+}
+
+
+input UpdateInvoiceInput {
+  payment_preference: BillingPreference
+  transaction_date: DateTime
+  terms_id: ID
+  start_date: DateTime
+  end_date: DateTime
+  due_date: DateTime
+  notes: String
+  status: InvoiceDocumentStatus
+  logo_id: ID
+}
+
+
+input UpdateNationalTagPathInput {
+  sku: String
+  name: String
+  quantity_unit: String
+  is_available: Boolean
+  send_verification_notification: Boolean
+  medium_super_tag_id: ID
+  priority: Int
+  creative_form_id: ID
+  verification_form_id: ID
+}
+
+
+input UpdateOrderInput {
+  id: ID!
+  order: OrderInput!
+}
+
+
+input UpdateProductVariantGroupInput {
+  dates: [ProductVariantGroupDateInput!]
+  fulfillmentMethodId: ID
+}
+
+
+input UpdateScheduleInput {
+  collectionId: ID
+  schedule: ScheduleInput
+}
+
+
+input UserContactInput {
+  user_id: ID!
+  type: ContactType!
+}
+
+
+input UserInput {
+  first_name: String
+  last_name: String
+  email: String
+  phone: String
+  current_password: String
+  new_password: String
+  confirm_password: String
+}
+
+
+input UserNotificationTypeInput {
+  email: Boolean
+  in_platform: Boolean
+  text: Boolean
+  desktop: Boolean
+}
+
+
+input VariantInput {
+  id: ID
+  sku: String
+  migrateSku: Boolean
+  name: String
+  is_enabled: Boolean
+  is_read: Boolean
+  is_super: Boolean
+  is_bookable_ad_shop: Boolean
+  rates: JSON
+  quantity: Int
+  unit: UnitInput
+  attributes: JSON
+  enabled_rate_classes: [RateClass!]
+  rateSheets: [RateSheetInput!]
+}
+
+
+input VerificationInput {
+  formResponse: FormResponseInput
+}
+
+
+input sendBuyerInviteInput {
+  email: String!
+  role: BuyerRoleType!
+  contactType: String
+}
+
+
+type AccountSubscription {
+  id: ID!
+  subscription_type: SubscriptionTypeEnum
+  subscriptionType: SubscriptionType
+  amount: Currency!
+  billing_period: SubscriptionBillingPeriod!
+  start_date: DateTime!
+  end_date: DateTime
+  last_payment_date: DateTime
+  auto_renew: Boolean!
+  created_at: Boolean!
+  deleted_at: Boolean
+  primaryCreditCard: CreditCard
+  paymentMethod: PaymentMethod
+  transactions: [Transaction!]
+}
+
+
+type AccountingMutation {
+  mutateInvoice(id: ID): InvoiceDocumentMutation!
+  mutateBill(id: ID): BillDocumentMutation!
+}
+
+
+type AccountingReportsQuery {
+  arAgingReport: ArAgingReportQuery!
+  salesSummaryReport: SalesSummaryReportQuery!
+  transactionReport: TransactionReportQuery!
+  creditCardTransactionReport: TransactionReportQuery!
+  massExportPdf(input: ReportExportInput!): Boolean!
+}
+
+
+type ActiveSearchTool {
+  name: String!
+  value: JSON
+}
+
+
+type Ad {
+  id: ID!
+  ref: String!
+  sku: String!
+  buyer: Buyer!
+  supplier: Supplier!
+  campus: Campus!
+  customer: Customer!
+  campaign: Campaign!
+  start_date: DateTime!
+  end_date: DateTime
+  days: Int
+  deadline_date: DateTime
+  dimension: Dimension
+  impressions: Int!
+  fulfillment_method: FulfillmentMethod
+  keyword_targeting: JSON
+  details: String
+  status: AdStatus!
+  approval_status: String!
+  is_paused: Boolean!
+  creative_phase: String
+  production_size: String
+  position: String
+  charge_type: AdGroupRateType
+  charge_metric: AdGroupMetric
+  charge_rate: Currency
+  payout_type: AdGroupRateType
+  payout_metric: AdGroupMetric
+  payout_rate: Currency
+  order: Order!
+  orderLineItem: OrderLineItem!
+  orderProduct: OrderProduct!
+  creative: Creative
+  verification: Verification
+  sync_to_digital_vendor: Boolean
+  is_synced_to_digital_vendor: Boolean
+  is_ssp_booked: Boolean
+  digitalChecklist: DigitalChecklist
+  tagType: TagType
+  servingTags: AdServingTags
+  nationalTagPath: NationalTagPath
+  digitalVendorFlight: External
+  notes: [Note]
+  tags: [Tag!]
+  is_selected: Boolean!
+  history: [HistoryRecord!]
+  creativeForm: Form!
+  verificationForm: Form!
+  adGroup: AdGroup
+}
+
+
+type AdAnalytics {
+  id: ID!
+  asset_schedule_id: ID!
+  days: Int!
+  start_date: DateTime!
+  end_date: DateTime
+  impressions: Int
+  clicks: Int
+  likes: Int
+  interactions: Int
+  page_views: Int!
+  impression_count: Int!
+  impression_qty: Int!
+  campaign_name: String!
+  name: String!
+  supplier_id: ID!
+  product_name: String!
+}
+
+
+type AdGroup {
+  id: ID!
+  name: String!
+  impressions: Int!
+  priority: String!
+  status: AdGroupStatus!
+  charge_type: AdGroupRateType!
+  charge_metric: AdGroupMetric!
+  charge_rate: Currency!
+  payout_type: AdGroupRateType!
+  payout_metric: AdGroupMetric!
+  payout_rate: Currency!
+  created_at: DateTime!
+}
+
+
+type AdMutation {
+  ad: Ad
+  update(input: AdInput!): Boolean!
+  delete: Boolean!
+  addDetails(details: String!): Boolean!
+  addNote(note: NoteInput!): Boolean!
+  setTags(tags: [String!]!): Boolean!
+  reschedule(input: AdInput!): Boolean!
+  cancel(cancelLineItem: Boolean!): Boolean!
+  resumeCanceled(status: AdStatus): Boolean!
+  exportSupplierAds(filter: JSON): JSON!
+  mutateCreative(id: ID): CreativeMutation
+  supplierAcceptCreative: Boolean!
+  supplierAcceptCreativeForBuyer: Boolean!
+  supplierRejectCreative(noteText: String!): Boolean!
+  buyerAcceptCreative: Boolean!
+  buyerRejectCreative(noteText: String): Boolean!
+  approveNationalVerification: Boolean!
+  saveVerification(input: VerificationInput): Boolean!
+  rejectNationalVerification(note: NoteInput): Boolean
+}
+
+"A paginated list of Ad items."
+
+type AdPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Ad items."
+  data: [Ad!]!
+}
+
+
+type AdServingTags {
+  id: ID!
+  thirdParty: String!
+  static: String!
+}
+
+
+type AdShop {
+  id: ID!
+  supplier: Supplier
+  is_enabled: Boolean!
+  terms_accepted_date: DateTime
+  theme_color: String
+  use_logo_on_billing_docs: Boolean!
+  allow_credit_card_payment: Boolean!
+  require_verifications: Boolean!
+  shop_name: String!
+  description: String
+  email: String
+  phone: String
+  slug: String!
+  policiesFile: File
+  headerPhotoFile: File
+  profilePhotoFile: File
+  paymentMethods: [PaymentMethod!]
+  customer(buyer_id: ID): Customer!
+  navigationTree(rateClass: RateClass!, startDate: DateTime, endDate: DateTime): JSON!
+  browseProducts(rateClass: RateClass!, selectedPath: [String], startDate: DateTime, endDate: DateTime, sortBy: BrowseProductSort): [BrowseProduct!]
+  product(id: ID!): Product!
+}
+
+
+type AdShopMutation {
+  adShop: AdShop
+  update(input: AdShopInput!): Boolean!
+  acceptTerms(accepted: Boolean!): Boolean!
+}
+
+
+type Address {
+  id: ID!
+  name: String
+  attn: String
+  address: String
+  address2: String
+  address3: String
+  city: String
+  state: String
+  zip_code: String
+  country: String
+}
+
+
+type ArAgingReportQuery {
+  data(filter: JSON): JSON
+  searchTools: [SearchTool!]!
+}
+
+
+type AttributeColumn {
+  id: ID!
+  is_curated: Boolean!
+  name: String!
+  width: Int!
+  component: String!
+  props: JSON
+}
+
+
+type AttributeColumnMutation {
+  attributeColumn: AttributeColumn
+  create(input: AttributeColumnInput!): Boolean!
+}
+
+
+type Audience {
+  id: ID!
+  ref: String!
+  name: String
+  selections: [ID!]
+  available_selections: [ID!]
+  summary(filter: JSON): AudienceSummary!
+  availableSummary(filter: JSON): AudienceSummary!
+  searchTools(filter: JSON): [SearchTool!]!
+  campuses(sort: JSON, filter: JSON, preference: JSON, first: Int = 10, page: Int): CampusWithDataPaginator
+  availableCampuses(sort: JSON, filter: JSON, preference: JSON, first: Int = 10, page: Int): CampusWithDataPaginator
+}
+
+
+type AudienceMutation {
+  audience: Audience
+  create(input: CreateAudienceInput!): Boolean!
+  update(input: UpdateAudienceInput!): Boolean!
+  delete: Boolean!
+  selectAllCampuses(select: Boolean, filter: JSON): Boolean!
+  selectAllAvailableCampuses(select: Boolean, filter: JSON): Boolean!
+  addCampuses(ids: [ID!]): Boolean!
+  addCampusesByName(names: [String!]!): Int!
+  removeCampuses(ids: [ID!]): Boolean!
+}
+
+"A paginated list of Audience items."
+
+type AudiencePaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Audience items."
+  data: [Audience!]!
+}
+
+
+type AudienceSummary {
+  total_campuses: Int!
+  total_enrollment: Int
+}
+
+
+type AuthToken {
+  id: ID!
+  type: String!
+  type_id: ID!
+  token: String!
+  expires_at: DateTime
+}
+
+
+type BillDocument {
+  id: ID!
+  ref: String!
+  version: String!
+  type: DocumentType!
+  doc_number: String!
+  payment_preference: BillingPreference
+  amount: Float!
+  start_date: DateTime!
+  end_date: DateTime!
+  transaction_date: DateTime!
+  status: BillDocumentStatus!
+  url: String
+  provider_id: ID
+  provider_url: String
+  is_tracked_by_source: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+  delete_started_at: DateTime
+  documentLineItems: [DocumentLineItem!]
+  supplier: Supplier!
+  order: Order!
+  user: User
+}
+
+
+type BillDocumentMutation {
+  bill: BillDocument
+  createForAds(input: CreateBillInput): Boolean!
+  syncToProvider: Boolean
+  delete: Boolean
+}
+
+
+type BooleanData {
+  index: String!
+  indexList: [String!]
+  type: SearchDataType!
+  onLabel: String
+  offLabel: String
+  onValue: String
+  offValue: String
+  hideOffButton: Boolean
+  default: Boolean
+}
+
+
+type BrowseProduct {
+  product: Product!
+  starting_price: Currency
+}
+
+
+type Buyer {
+  id: ID!
+  uuid: String!
+  buyer_phone: String
+  name: String!
+  display_name: String!
+  buyer_company: String!
+  billing_notes: String
+  repUser: User
+  campaign_type_id: DeprecatedCampaignType!
+  check_name: String
+  primaryContact: Contact!
+  billingContact: Contact
+  creativeContacts: [Contact]!
+  primaryAddress: Address
+  billingAddress: Address
+  shippingAddress: Address
+  customer(supplierId: ID!): Customer
+  campaign(id: ID!): Campaign
+  carts: [Cart!]!
+  features: [Feature!]!
+  notifications: [Notification!]
+  pendingNotifications: [Notification!]
+  suppliers: [Supplier!]!
+  purchased_products: JSON
+  orders(supplier_id: ID, filter: JSON): [Order!]
+  invites(filter: JSON): [Invite!]
+  users: [User!]
+  teamMembers: [User!]!
+  audience(id: ID!): Audience
+  nationalAds(first: Int = 10, page: Int): AdPaginator
+  audiences(sort: JSON, filter: JSON, first: Int = 10, page: Int): AudiencePaginator
+}
+
+
+type BuyerMutation {
+  buyer: Buyer
+  create(input: BuyerInput): Boolean!
+  update(input: BuyerInput): Boolean!
+  delete: Boolean!
+  updateAccount(input: BuyerInput): Boolean!
+  rejectRequest(invite_id: ID!): Boolean!
+  sendInvite(input: sendBuyerInviteInput): Boolean!
+  mutateCampaign(id: ID!): CampaignMutation!
+  signup(input: BuyerSignupInput!): Boolean!
+  takeover: Boolean!
+  mutateAd(id: ID!): AdMutation
+  mutateAudience(id: ID): AudienceMutation
+  mutateContact(id: ID): ContactMutation
+  mutateOrder(id: ID!): BuyerOrderMutation!
+  mutateUser(id: ID!): BuyerUserMutation
+}
+
+
+type BuyerOrderMutation {
+  order: Order!
+  acceptOrder(input: BuyerOrderInput): Boolean!
+}
+
+
+type BuyerUser {
+  buyer: Buyer!
+  user: User!
+}
+
+
+type BuyerUserMutation {
+  user: User
+  setUserContact(contactTypes: [ContactTypeInput!]!): Boolean!
+  setUserRole(type: BuyerRoleType): Boolean!
+  removeUser: Boolean!
+}
+
+
+type Campaign {
+  id: ID!
+  ref: String!
+  invoicedAds: [Ad!]
+  buyer: Buyer!
+  primaryContact: Contact
+  billingContact: Contact
+  name: String!
+  start_date: DateTime
+  end_date: DateTime
+  created_at: DateTime!
+  status: CampaignStatus!
+  orders: [Order!]!
+  analytics: JSON
+  type: CampaignType
+  reps: [User!]
+  analyze_page_link: String
+  searchTools(filter: JSON): [SearchTool!]!
+  ads(sort: JSON, filter: JSON, first: Int = 10, page: Int): AdPaginator
+}
+
+
+type CampaignMutation {
+  campaign: Campaign!
+  update(input: CampaignInput!): Boolean!
+  cancel: Boolean!
+  resume: Boolean!
+  delete: Boolean!
+  addCampaignRep(user_id: ID!): Boolean!
+  removeCampaignRep(user_id: ID!): Boolean!
+}
+
+"A paginated list of Campaign items."
+
+type CampaignPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Campaign items."
+  data: [Campaign!]!
+}
+
+
+type CampaignTrackerMutation {
+  nationalCampaignTracker: NationalCampaignTracker
+  affectedAds: [Ad!]
+  bulkUpdateCreative(input: BulkCreativeInput!): [Ad]
+  bulkRescheduleAds(input: BulkRescheduleInput!): [Ad]
+  bulkUpdatePricingForAds(input: BulkUpdatePricingInput!): [Ad]
+  bulkTogglePauseForAds(isPaused: Boolean!): [Ad]
+  bulkUpdateAds(input: JSON!): [Ad]
+  selectByFilter(filter: JSON!, select: Boolean): Boolean!
+  selectByIds(ids: [ID!]!, select: Boolean): Boolean!
+  importAdUpdates(file: Upload!): Boolean!
+}
+
+
+type Campus {
+  id: ID!
+  name: String!
+  city: String
+  state: String
+  zip_code: String
+  relevance: Float
+  data: LimitedCampusData
+  suppliers(filter: JSON): [Supplier]!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"A paginated list of Campus items."
+
+type CampusPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Campus items."
+  data: [Campus!]!
+}
+
+
+type CampusWithData {
+  id: ID!
+  name: String!
+  city: String
+  state: String
+  zip_code: String
+  relevance: Float
+  data: JSON
+  limitedData: LimitedCampusData
+  suppliers(filter: JSON): [Supplier]!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"A paginated list of CampusWithData items."
+
+type CampusWithDataPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of CampusWithData items."
+  data: [CampusWithData!]!
+}
+
+
+type Cart {
+  id: ID!
+  rate_class: String
+  productVariantGroups: [ProductVariantGroup!]!
+  buyers: [Buyer]
+  total_base_price: Currency
+  total_adjusted_price: Currency
+  cartDiscounts: [CartDiscount]
+  summary: JSON
+  adShop: AdShop!
+  orders: [Order!]
+}
+
+
+type CartDiscount {
+  id: ID!
+  cart: Cart!
+  discount: Discount!
+}
+
+
+type CartError {
+  id: ID!
+  code: Int!
+  message: String!
+}
+
+
+type CartMutation {
+  cart: Cart!
+  updateRateClass(rateClass: RateClass!): Boolean!
+  addProductVariantGroup(input: ProductVariantGroupInput!): Boolean!
+  updateProductVariantGroup(id: ID!, input: UpdateProductVariantGroupInput!): Boolean!
+  deleteProductVariantGroup(id: ID!): Boolean
+  checkoutWithCreditCard(buyerId: ID!, input: JSON!): Order!
+  checkoutWithInvoice(buyerId: ID!, input: JSON!): Order!
+  addDiscount(code: String!): Boolean!
+  removeDiscount: Boolean!
+}
+
+
+type ChargeableBuyer {
+  key: ID!
+  id: ID!
+  buyerId: ID!
+  campaignId: ID!
+  buyerName: String!
+  campaignName: String!
+  grossRevenuePeriodDue: Currency!
+  supplierEarningsPeriodDue: Currency!
+  netRevenueDollars: Currency!
+  netRevenuePercent: Float!
+  mediumTypes: [MediumTypeAccountingSummary!]
+}
+
+
+type City {
+  id: ID!
+  name: String!
+}
+
+
+type Collection {
+  id: ID!
+  sku: String!
+  name: String!
+  property: Property!
+  is_template: Boolean!
+  is_super: Boolean!
+  description: String
+  is_enabled: Boolean!
+  is_bookable: Boolean!
+  typeEdges: [CollectionCollectionType!]!
+  reachType: ReachType
+  reaches: [Reach!]!
+  is_reach_applicable: Boolean
+  dimension: Dimension
+  products: [Product!]!
+  schedule: Schedule
+  inventoryReport(filter: JSON): [InventoryReport]!
+}
+
+
+type CollectionCollectionType {
+  is_template: Boolean!
+  type: CollectionType!
+}
+
+
+type CollectionMutation {
+  collection: Collection!
+  create(input: CollectionInput!): Boolean!
+  copy(input: CollectionInput!): Boolean!
+  update(input: CollectionInput!): Boolean!
+  delete: Boolean!
+  applyDimensions(input: CollectionInput): Boolean
+}
+
+
+type CollectionType {
+  id: ID!
+  medium_type_id: ID!
+  mediumType: MediumType!
+  value: String!
+  is_curated: Boolean!
+  supplier: Supplier
+}
+
+
+type Contact {
+  id: ID!
+  user_id: String
+  email: String
+  name: String
+  first_name: String
+  last_name: String
+  phone: String
+  contactable: Contactable
+}
+
+
+type ContactMutation {
+  contact: Contact!
+  setContact(input: ContactInput): Boolean!
+  setUserContact(input: UserContactInput): Boolean!
+}
+
+
+type Contactable {
+  account_type: String
+  contact_type: ContactType
+  created_at: DateTime
+  updated_at: DateTime
+}
+
+
+type County {
+  id: ID!
+  name: String!
+}
+
+
+type CoupleSelectData {
+  defaultKey: JSON
+  defaultValue: JSON
+  type: SearchDataType!
+  noSelectionLabel: String!
+  keyOptions: [SelectOption!]!
+  valueOptions: [SelectOption!]!
+}
+
+
+type Creative {
+  id: ID!
+  buyer: Buyer
+  ad: Ad
+  display_name: String
+  status: CreativeStatus!
+  created_at: DateTime!
+  updated_at: DateTime!
+  date_supplier_approved: DateTime
+  date_buyer_approved: DateTime
+  date_supplier_rejected: DateTime
+  date_buyer_rejected: DateTime
+  last_downloaded_at: DateTime
+  supplierRejectionNote: Note
+  buyerRejectionNote: Note
+  formResponse: FormResponse
+}
+
+
+type CreativeMutation {
+  creative: Creative
+  ad: Ad
+  supplierSetCreative(input: CreativeInput!): Boolean!
+  buyerSetCreative(input: CreativeInput!): Boolean!
+  updateLastDownloadDate: Boolean
+}
+
+
+type CreditCard {
+  id: ID!
+  nickname: String!
+  last4: String!
+  primary: Boolean!
+  first_name: String
+  last_name: String
+  card_type: String
+  expiration_date: Date!
+  created_at: DateTime!
+}
+
+
+type Customer {
+  id: ID!
+  type: CustomerType!
+  managed: Boolean!
+  can_access_ad_shop: Boolean!
+  buyer: Buyer!
+  buyer_id: ID!
+  supplier_id: ID!
+  buyerPrimaryContact: Contact!
+  buyerBillingContact: Contact
+  buyerReps: [User!]
+  can_pay_by_alternate_method: Boolean
+  is_active: Boolean!
+  tags: [Tag!]
+  notes: [Note!]
+  files: [File!]
+  billing_preference: BillingPreference!
+  terms: Terms!
+}
+
+
+type CustomerMutation {
+  customer: Customer
+  affectedOrders: [Order!]
+  mutateBuyer: BuyerMutation!
+  create(input: CreateCustomerInput!): Boolean!
+  update(input: UpdateCustomerInput!): Boolean!
+  delete: Boolean!
+  setNotes(input: [NoteInput!]!): Boolean!
+  setFiles(input: [FileInput!]!): Boolean!
+  setTags(input: [String!]!): Boolean!
+  setInvoiceTerms(input: ID!): Boolean!
+  addCustomerRep(user_id: ID!): Boolean!
+  removeCustomerRep(user_id: ID!): Boolean!
+  approveRateClass(rate_class: RateClass!): Boolean!
+  approvePaymentMethod(payment_method_id: String!): Boolean!
+  import(file: Upload!): Boolean!
+  inviteUserToBuyerAccount(email: String!, name: String!): Boolean!
+}
+
+"A paginated list of Customer items."
+
+type CustomerPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Customer items."
+  data: [Customer!]!
+}
+
+
+type DateCalendarData {
+  index: String!
+  allowToggle: Boolean
+  mode: DateCalendarMode!
+  minDate: String
+  type: SearchDataType!
+}
+
+
+type DateRangeData {
+  indexFrom: String!
+  indexTo: String!
+  indexList: [String!]
+  type: SearchDataType!
+  dates: [DateTime!]
+}
+
+
+type DigitalAdAnalytics {
+  id: ID!
+  ad_id: ID!
+  ref: String!
+  order_ref: String!
+  campaign_type: CampaignType!
+  sku: String!
+  is_super: Boolean!
+  status: AdStatus!
+  start_date: DateTime!
+  end_date: DateTime
+  variant_name: String!
+  product_name: String!
+  collection_name: String!
+  property_name: String!
+  medium_name: String!
+  requests: Int
+  impressions: Int
+  viewable_impressions: Int
+  full_impressions: Int
+  clicks: Int
+  ctr: Float
+  viewable_ctr: Float
+  full_ctr: Float
+  last_impression_at: DateTime
+  last_click_at: DateTime
+  customer: Customer!
+}
+
+"A paginated list of DigitalAdAnalytics items."
+
+type DigitalAdAnalyticsPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of DigitalAdAnalytics items."
+  data: [DigitalAdAnalytics!]!
+}
+
+
+type DigitalAnalyticsReportStats {
+  id: ID!
+  total_ads: Int!
+  total_ad_units: Int!
+  totals: DigitalAnalyticsStats
+  monthly: DigitalAnalyticsStats
+  daily: DigitalAnalyticsStats
+}
+
+
+type DigitalAnalyticsStats {
+  requests: Int!
+  impressions: Int!
+  viewable_impressions: Int!
+  full_impressions: Int!
+  clicks: Int!
+  ctr: Float!
+  viewable_ctr: Float!
+  full_ctr: Float!
+}
+
+
+type DigitalChecklist {
+  id: ID!
+  isSynced: Boolean!
+  isVariantSynced: Boolean!
+  isActiveStatus: Boolean!
+  impressions: Int!
+  variantExists: Boolean!
+  variantEnabled: Boolean!
+  productEnabled: Boolean!
+  collectionEnabled: Boolean!
+  creativeStatus: Boolean!
+}
+
+
+type DigitalScriptTagReporting {
+  ad_count: Int!
+  ad_unit_count: Int!
+  property_count: Int!
+}
+
+
+type DigitalScriptTagStatus {
+  last_seen_at: DateTime
+  is_installed: Boolean!
+}
+
+
+type DigitalStatus {
+  id: ID!
+  scriptTag: DigitalScriptTagStatus!
+  reporting: DigitalScriptTagReporting!
+}
+
+
+type Dimension {
+  id: ID!
+  type: String
+  width: Float!
+  height: Float!
+  depth: Float
+  width_ratio: Float
+  height_ratio: Float
+  max_width: Float
+  max_height: Float
+  unit: String!
+}
+
+
+type Discount {
+  id: ID!
+  name: String!
+  code: String!
+  type: DiscountType!
+  value: Currency!
+  start_date: DateTime!
+  end_date: DateTime
+  supplier: Supplier!
+  created_at: DateTime!
+  updated_at: DateTime!
+  status: Boolean
+  uses: Int!
+  used: Int!
+  notes: String
+  history: [DiscountHistory!]!
+}
+
+
+type DiscountHistory {
+  id: ID!
+  message: String!
+  created_at: DateTime!
+}
+
+
+type DiscountMutation {
+  discount: Discount
+  create(input: DiscountInput!): Boolean
+  update(input: DiscountInput!): Boolean
+  delete: Boolean!
+}
+
+
+type Dma {
+  id: ID!
+  code: String!
+}
+
+
+type DocumentLineItem {
+  id: ID!
+  type: DocumentLineItemType!
+  sku: String!
+  name: String!
+  description: String
+  amount: Float!
+  quantity: Int!
+  date: DateTime!
+  end_date: DateTime
+  created_at: DateTime!
+  updated_at: DateTime!
+  children: [DocumentLineItem!]
+  orderLineItem: OrderLineItem
+  bill: BillDocument!
+  invoice: InvoiceDocument!
+}
+
+
+type External {
+  id: ID!
+  type: String!
+  external_id: ID!
+  alive_at: DateTime
+  dead_at: DateTime
+  created_at: DateTime
+  nova_url: String
+  resource_url: String
+}
+
+
+type Featurable {
+  featurable_id: ID
+  featurable_type: String
+}
+
+
+type Feature {
+  id: ID!
+  name: String!
+  is_enabled: Boolean!
+  created_at: DateTime
+  featurables: [Featurable!]
+}
+
+
+type FeatureMutation {
+  feature: Feature
+  toggleFeaturableEntity(input: FeatureEntityInput!): Boolean
+  toggleGlobally(enabled: Boolean!): Boolean
+}
+
+"A paginated list of Feature items."
+
+type FeaturePaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Feature items."
+  data: [Feature!]!
+}
+
+
+type FieldValueChange {
+  name: String!
+  label: String!
+  type: FormFieldType!
+  options: JSON
+  oldValue: JSON
+  newValue: JSON
+}
+
+
+type File {
+  id: ID
+  filename: String!
+  url: String!
+  size: Int!
+  mime: String!
+  transcodes: JSON
+  location: JSON
+}
+
+
+type FinanceTrackerAd {
+  id: ID!
+  ref: String!
+  status: AdStatus!
+  start_date: DateTime!
+  end_date: DateTime
+  periodGrossRevenue: Currency!
+  periodSupplierEarnings: Currency!
+  grossRevenuePeriodDue: Currency!
+  supplierEarningsPeriodDue: Currency!
+  netRevenueDollars: Currency!
+  netRevenuePercent: Float!
+  buyer: Buyer!
+  campaign: Campaign!
+  order: Order!
+  orderLineItem: OrderLineItem!
+  supplier: Supplier!
+}
+
+
+type FinanceTrackerAdsSummary {
+  total: Int!
+  periodGrossRevenue: Currency!
+  periodSupplierEarnings: Currency!
+  grossRevenuePeriodDue: Currency!
+  supplierEarningsPeriodDue: Currency!
+}
+
+
+type FinanceTrackerMutation {
+  sendBuyerInvoices(filter: JSON, transactionDate: String): JobBatch!
+  sendSupplierPayments(filter: JSON, transactionDate: String): JobBatch!
+}
+
+
+type FinanceTrackerPaginator {
+  data: [FinanceTrackerAd!]!
+  paginatorInfo: PaginatorInfo!
+}
+
+
+type Form {
+  id: ID!
+  name: String!
+  variations: Int
+  category: String!
+  fields: [FormField!]
+  associationCount: Int!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+
+type FormField {
+  id: ID!
+  name: String!
+  label: String!
+  placeholder: String
+  type: FormFieldType!
+  required: Boolean!
+  required_group: String
+  allow_downloads: Boolean
+  description: String
+  buyer_description: String
+  show_buyer_description: Boolean
+  default_value: JSON
+  position: Int!
+}
+
+
+type FormFieldResponse {
+  id: ID!
+  user: User!
+  field: FormField!
+  value: JSON
+  created_at: DateTime!
+}
+
+
+type FormMutation {
+  form: Form
+  create(input: CreateFormInput!): Boolean!
+  update(input: UpdateFormInput!): Boolean!
+  delete: Boolean!
+}
+
+
+type FormResponse {
+  id: ID!
+  is_empty: Boolean!
+  submitted_at: DateTime!
+  completed_at: DateTime
+  user: User!
+  form: Form!
+  created_at: DateTime!
+  updated_at: DateTime!
+  fieldResponses: [FormFieldResponse!]!
+  images: [File!]!
+}
+
+
+type FulfillmentMethod {
+  id: ID!
+  name: String!
+  is_curated: Boolean!
+  supplier: Supplier
+  display_name: String!
+  description: String
+  requires_assets: Boolean!
+  requires_shipping: Boolean!
+  shipping_address: String
+  requires_text: Boolean!
+  requires_printing: Boolean!
+  requires_acceptance: Boolean!
+  recommendedFileTypes: [String]
+  deadline_days: Int!
+  price: Currency!
+  is_national: Boolean!
+  is_dimension_grouped: Boolean!
+  verification_instructions: String
+}
+
+
+type FulfillmentMethodMutation {
+  fulfillmentMethod: FulfillmentMethod
+  create(input: FulfillmentMethodInput!): Boolean!
+  update(input: FulfillmentMethodInput!): Boolean!
+  delete: Boolean!
+}
+
+
+type GeneratedForm {
+  id: ID!
+  name: String!
+  category: String!
+  fields: [FormField!]
+}
+
+
+type GroupData {
+  noSelectionLabel: String!
+  defaultSelection: [String]
+}
+
+
+type HistoryRecord {
+  id: ID!
+  date: DateTime!
+  event: String!
+  user: User!
+  account: String!
+  changes: [FieldValueChange!]!
+}
+
+
+type InventoryReport {
+  id: ID!
+  sku: String!
+  total_dates: Int!
+  min_date: Date!
+  max_date: Date!
+  total_quantity: Int!
+  total_impressions: Int
+  available_quantity: Int!
+  available_impressions: Int
+  booked_quantity: Int!
+  booked_quantity_national: Int!
+  booked_quantity_local: Int!
+  booked_impressions: Int!
+  booked_impressions_national: Int!
+  booked_impressions_local: Int!
+}
+
+
+type Invite {
+  id: ID!
+  role: InviteRoleType
+  email: String!
+  status: String!
+  supplier: Supplier
+  buyer: Buyer
+  user: User
+}
+
+
+type InvoiceData {
+  id: ID!
+  selectionSummary: InvoicesSelectionSummary!
+  searchTools(filter: JSON): [SearchTool!]!
+  invoices(filter: JSON, sort: JSON, first: Int = 10, page: Int): InvoiceDocumentPaginator
+}
+
+
+type InvoiceDocument {
+  id: ID!
+  ref: String!
+  version: String!
+  type: DocumentType!
+  terms: Terms!
+  doc_number: String!
+  payment_preference: BillingPreference
+  amount: Float!
+  paid_amount: Float!
+  remaining_amount: Float!
+  due_date: DateTime!
+  start_date: DateTime!
+  end_date: DateTime!
+  transaction_date: DateTime!
+  status: InvoiceDocumentStatus!
+  notes: String
+  url: String
+  provider_id: String
+  provider_url: String
+  share_link: String!
+  is_tracked_by_source: Boolean!
+  is_selected: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+  delete_started_at: DateTime
+  logo: File
+  documentLineItems: [DocumentLineItem!]
+  buyer: Buyer!
+  customer: Customer
+  orders: [Order!]
+  supplier: Supplier
+  user: User
+  transactions(filter: JSON): [Transaction!]
+  settings: InvoiceSettings!
+}
+
+
+type InvoiceDocumentMutation {
+  invoice: InvoiceDocument
+  createForAds(input: CreateInvoiceInput): Boolean
+  delete: Boolean
+}
+
+"A paginated list of InvoiceDocument items."
+
+type InvoiceDocumentPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of InvoiceDocument items."
+  data: [InvoiceDocument!]!
+}
+
+
+type InvoiceSettings {
+  logo: String!
+  allowCreditCardPayment: Boolean!
+  customerPrimaryContact: Contact!
+  customerBillingContact: Contact
+  vendorPrimaryContact: Contact!
+  vendorBillingContact: Contact
+  organizationName: String!
+  address: Address
+  isNational: Boolean!
+  isInfluencer: Boolean!
+  influencerRepEmail: String!
+}
+
+
+type InvoicesSelectionSummary {
+  total_selected: Int!
+  total: Int!
+  total_active: Int!
+  total_amount: Currency!
+  total_amount_draft: Currency!
+  total_overdue: Currency!
+  total_not_due: Currency!
+  total_due_30_days: Currency!
+  total_remaining_amount: Currency!
+  total_paid_amount: Currency!
+}
+
+
+type JobBatch {
+  id: ID!
+  name: String
+  total_jobs: Int!
+  pending_jobs: Int!
+  processed_jobs: Int!
+  failed_jobs: Int!
+  progress: Float!
+  options: JSON
+  created_at: DateTime!
+}
+
+
+type LimitedCampusData {
+  dma: String!
+  enrollment: Int!
+}
+
+
+type LineItemsSelectionSummary {
+  id: ID!
+  total_selected: Int!
+  total_items: Int!
+  total_buyer_price: Currency!
+  total_supplier_price: Currency!
+  total_invoiced: Currency!
+  total_invoiced_active: Currency!
+  total_invoiced_draft: Currency!
+  total_uninvoiced: Currency!
+  max_active_date: DateTime
+  min_active_date: DateTime
+  uniqueCustomers: [Customer!]
+}
+
+
+type LocationQuery {
+  states: [State!]
+  dmas: [Dma!]
+  cities(filter: JSON): [City!]
+  counties(filter: JSON): [County!]
+}
+
+
+type MediakitMutation {
+  supplier: Supplier!
+  applyMediakitTemplate: Boolean!
+  mutateAttributeColumn(id: ID): AttributeColumnMutation!
+  mutateCollection(id: ID): CollectionMutation!
+  mutateFulfillmentMethod(id: ID): FulfillmentMethodMutation!
+  mutateMedium(id: ID): MediumMutation!
+  mutateProduct(id: ID): ProductMutation!
+  mutateProperty(id: ID): PropertyMutation!
+}
+
+
+type Medium {
+  id: ID!
+  sku: String!
+  name: String!
+  is_enabled: Boolean!
+  is_template: Boolean!
+  is_template_locked: Boolean!
+  is_super: Boolean!
+  is_bookable: Boolean!
+  created_at: DateTime
+  updated_at: DateTime
+  superTag: SuperTag
+  typeEdges: [MediumMediumType!]!
+  supplier_id: ID!
+  supplier: Supplier!
+  properties: [Property!]!
+}
+
+
+type MediumMediumType {
+  is_template: Boolean!
+  type: MediumType
+}
+
+
+type MediumMutation {
+  medium: Medium
+  create(input: MediumInput!): Boolean!
+  update(input: MediumInput!): Boolean!
+  delete: Boolean!
+  applyTemplate: Boolean!
+  saveTemplate: Boolean!
+}
+
+
+type MediumType {
+  id: ID!
+  value: String!
+  is_curated: Boolean!
+  supplier: Supplier
+  propertyTypes(supplier_id: ID, sort: JSON, filter: JSON): [PropertyType!]!
+  collectionTypes(supplier_id: ID, sort: JSON, filter: JSON): [CollectionType!]!
+  productTypes(supplier_id: ID, sort: JSON, filter: JSON): [ProductType!]!
+  variantTypes(supplier_id: ID, sort: JSON, filter: JSON): [ProductVariantType!]!
+  distinctPropertyTypes: [PropertyType!]!
+  distinctCollectionTypes: [CollectionType!]!
+  distinctProductTypes: [ProductType!]!
+  distinctVariantTypes: [ProductVariantType!]!
+  defaultCreativeForm: Form
+}
+
+
+type MediumTypeAccountingSummary {
+  name: String!
+  grossRevenuePeriodDue: Currency!
+  supplierEarningsPeriodDue: Currency!
+  netRevenueDollars: Currency!
+  netRevenuePercent: Float!
+}
+
+
+type Mutation {
+  registerUserFromBuyerInvite(input: RegisterUserFromInviteInput): User!
+  registerUserFromSupplierInvite(input: RegisterUserFromInviteInput): User!
+  mutateAccounting: AccountingMutation
+  mutateFinanceTracker: FinanceTrackerMutation!
+  mutatePayableInvoiceDocument(id: ID!): PayableInvoiceDocumentMutation!
+  mutateAd(id: ID!): AdMutation
+  mutateBuyer(id: ID): BuyerMutation
+  mutateCampaignTracker: CampaignTrackerMutation!
+  mutateCart(id: ID!): CartMutation!
+  mutateForm(id: ID): FormMutation!
+  mutateNote(id: ID!): NoteMutation!
+  mutateNotification(id: ID!): NotificationMutation
+  mutateFeature(id: ID!): FeatureMutation!
+  mutateVariant(id: ID!): VariantMutation
+  mutateOrder(id: ID): OrderMutation!
+  mutateSupplier(id: ID): SupplierMutation!
+  registerSupplier(input: SupplierRegistrationInfo!): User!
+  mutateSuperTag(id: ID): SuperTagMutation
+  mutateNationalTagPath(id: ID): NationalTagPathMutation
+  mutateUser(id: ID): UserMutation!
+  loginUserMutation(input: LogInInput!): Boolean!
+  sendResetPasswordEmailMutation(email: String!): Boolean!
+  resetPasswordMutation(input: ResetPasswordInput!): Boolean!
+  updateUserAccount(input: UserInput): User!
+  logout: Boolean!
+}
+
+
+type NationalAdsSelectionsSummary {
+  total_selected: Int!
+  start_date: DateTime
+  end_date: DateTime
+}
+
+
+type NationalCampaignTracker {
+  id: ID!
+  adTags: [Tag]
+  nationalAdsSelectionsSummary: NationalAdsSelectionsSummary!
+  searchTools(filter: JSON): [SearchTool!]!
+  bulkCreativeForm: GeneratedForm!
+  nationalAds(sort: JSON, filter: JSON, first: Int = 10, page: Int): AdPaginator
+}
+
+
+type NationalFinanceTracker {
+  id: ID!
+  nationalAds(sort: JSON, filter: JSON!, first: Int, page: Int): FinanceTrackerPaginator!
+  nationalAdsSummary(filter: JSON): FinanceTrackerAdsSummary!
+  searchTools(filter: JSON): [SearchTool!]!
+  payableSuppliers(filter: JSON): [PayableSupplier!]
+  chargeableBuyers(filter: JSON): [ChargeableBuyer!]
+}
+
+
+type NationalTagPath {
+  id: ID!
+  sku: String
+  name: String!
+  quantity_unit: String
+  ad_count: Int!
+  is_available: Boolean!
+  send_verification_notification: Boolean!
+  priority: Int!
+  updated_at: DateTime!
+  mediumSuperTag: SuperTag
+  creativeForm: Form
+  verificationForm: Form
+}
+
+
+type NationalTagPathMutation {
+  nationalTagPath: NationalTagPath
+  create(input: CreateNationalTagPathInput!): Boolean!
+  update(input: UpdateNationalTagPathInput!): Boolean!
+  delete: Boolean!
+}
+
+"A paginated list of NationalTagPath items."
+
+type NationalTagPathPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of NationalTagPath items."
+  data: [NationalTagPath!]!
+}
+
+
+type Note {
+  id: ID!
+  user: User
+  title: String
+  description: String
+  text: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+
+type NoteMutation {
+  note: Note!
+  edit(input: NoteUpdateInput!): Boolean
+  delete: Boolean
+}
+
+
+type Notification {
+  id: ID!
+  ref: String
+  level: NotificationLevel!
+  is_read: Boolean!
+  is_archived: Boolean!
+  category: String
+  title: String
+  content: String
+  data: JSON
+  created_at: DateTime!
+  deleted_at: DateTime
+  expires_at: DateTime
+}
+
+
+type NotificationMutation {
+  notification: Notification!
+  user: User!
+  archive: Boolean
+  toggleRead(input: Boolean!): Boolean
+}
+
+
+type NotificationType {
+  id: ID!
+  slug: String!
+  title: String!
+  description: String
+}
+
+"A paginated list of NotificationType items."
+
+type NotificationTypePaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of NotificationType items."
+  data: [NotificationType!]!
+}
+
+
+type Order {
+  id: ID!
+  buyer_id: ID!
+  supplier_id: ID!
+  ref: String!
+  rate_class: RateClass
+  supplier: Supplier!
+  paymentMethod: PaymentMethod
+  billing_preference: BillingPreference
+  status: OrderStatus!
+  approval_status: OrderApprovalStatus
+  invoice_message: String
+  approved_rate_class: RateClass
+  approvedPaymentMethod: PaymentMethod
+  approved_ads_count: Int!
+  pending_ads_count: Int!
+  total: Currency!
+  total_supplier_price: Currency!
+  document_logo: String
+  discounts: [OrderDiscount!]!
+  customer: Customer
+  buyer: Buyer
+  campaign: Campaign
+  ads: [Ad!]
+  adShop: AdShop
+  reps: [User!]
+  lineItems(id: [ID!]): [OrderLineItem!]
+  activeLineItems(showUnapprovedAds: Boolean): [OrderLineItem!]
+  primaryContact: Contact
+  billingContact: Contact
+  customerAddress: Address!
+  billingAddress: Address
+  start_date: DateTime
+  end_date: DateTime
+  created_at: DateTime!
+  updated_at: DateTime!
+  notes: [Note]
+}
+
+
+type OrderDiscount {
+  id: ID!
+  order: Order!
+  lineItem: OrderLineItem
+  discount: JSON
+  amount: Currency
+}
+
+
+type OrderLineItem {
+  id: ID!
+  type: OrderLineItemType!
+  booking_type: String
+  quantity: Int!
+  unit: String
+  buyer_price: Currency!
+  delivery_buyer_price: Currency
+  delivery_supplier_price: Currency
+  base_amount: Currency!
+  supplier_price: Currency!
+  pay_supplier: Currency!
+  commission: Float
+  charge_buyer: Currency!
+  revenue_proposal: Currency
+  net_revenue: Currency
+  margin: Currency
+  invoiced_count: Int!
+  invoiced_active_count: Int!
+  invoiced_draft_count: Int!
+  invoiced_amount: Currency!
+  invoiced_active_amount: Currency!
+  invoiced_draft_amount: Currency!
+  uninvoiced_amount: Currency!
+  billed_amount: Currency!
+  unbilled_amount: Currency!
+  active_date: DateTime!
+  earliest_order_active_date: DateTime
+  payment_date: DateTime
+  status: OrderLineItemStatus!
+  created_at: DateTime!
+  ads: [Ad!]
+  order: Order!
+  discount: OrderDiscount
+  subLineItems: [OrderSubLineItem!]!
+  transactions: [Transaction!]
+  is_selected: Boolean!
+  invoices: [InvoiceDocument!]
+  bills: [BillDocument!]
+  invoiceLineItems: [DocumentLineItem!]
+  billLineItems: [DocumentLineItem!]
+  supplierInvoices: [InvoiceDocument!]
+}
+
+
+type OrderLineItemMutation {
+  order: Order!
+  orderLineItem: OrderLineItem!
+  createSubLineItem(input: SubLineItemInput!): Boolean!
+  deleteSubLineItem(id: ID!): Boolean!
+  update(input: OrderLineItemInput!): Boolean!
+}
+
+"A paginated list of OrderLineItem items."
+
+type OrderLineItemPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of OrderLineItem items."
+  data: [OrderLineItem!]!
+}
+
+
+type OrderLineItemTracker {
+  id: ID!
+  lineItemsSelectionSummary(filter: JSON): LineItemsSelectionSummary!
+  searchTools(filter: JSON): [SearchTool!]!
+  orderLineItems(filter: JSON, sort: JSON, first: Int = 10, page: Int): OrderLineItemPaginator
+}
+
+
+type OrderLineItemTrackerMutation {
+  orderLineItemTracker: OrderLineItemTracker
+  affectedOrderLineItems: [OrderLineItem!]
+  selectByFilter(filter: JSON!, select: Boolean): Boolean!
+  selectByIds(ids: [ID!]!, select: Boolean): Boolean!
+}
+
+
+type OrderMutation {
+  order: Order
+  approveOrder: Boolean!
+  rejectOrder(note: NoteInput): Boolean!
+  requestChanges(note: NoteInput): Boolean!
+  resetApprovalStatus(note: NoteInput): Boolean!
+  setNote(input: NoteInput!): Boolean!
+  update(input: UpdateOrderInput!): Boolean!
+  cancelAllLineItems: Boolean!
+  resumeAllLineItems: Boolean!
+  delete: Boolean!
+  addOrderRep(userId: ID!): Boolean!
+  removeOrderRep(userId: ID!): Boolean!
+  exportLineItems(filter: JSON): JSON
+  exportOrders(filter: JSON): JSON
+  mutateOrderLineItem(id: ID!): OrderLineItemMutation
+}
+
+"A paginated list of Order items."
+
+type OrderPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Order items."
+  data: [Order!]!
+}
+
+
+type OrderProduct {
+  id: ID!
+  is_super: Boolean!
+  sku: String!
+  is_ssp_product: Boolean!
+  is_digital_content: Boolean
+  is_script_tag_active: Boolean!
+  medium_id: String
+  property_id: String
+  collection_id: String
+  product_variant_id: String
+  medium_name: String
+  property_name: String
+  collection_name: String
+  product_name: String
+  product_variant_name: String
+  national_product_name: String
+  order: Order!
+  medium: Medium!
+  property: Property!
+  collection: Collection!
+  product: Product!
+  product_variant: ProductVariant!
+  mediumType: MediumType
+  nationalTagPath: NationalTagPath
+  scheduleType: ScheduleType
+}
+
+
+type OrderSubLineItem {
+  id: ID!
+  name: String!
+  description: String
+  amount: Currency!
+  is_hidden: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+  user: User
+}
+
+"Information about pagination using a Relay style cursor connection."
+
+type PageInfo {
+  "When paginating forwards, are there more items?"
+  hasNextPage: Boolean!
+  "When paginating backwards, are there more items?"
+  hasPreviousPage: Boolean!
+  "The cursor to continue paginating backwards."
+  startCursor: String
+  "The cursor to continue paginating forwards."
+  endCursor: String
+  "Total number of nodes in the paginated connection."
+  total: Int!
+  "Number of nodes in the current page."
+  count: Int!
+  "Index of the current page."
+  currentPage: Int!
+  "Index of the last available page."
+  lastPage: Int!
+}
+
+"Information about pagination using a fully featured paginator."
+
+type PaginatorInfo {
+  "Number of items in the current page."
+  count: Int!
+  "Index of the current page."
+  currentPage: Int!
+  "Index of the first item in the current page."
+  firstItem: Int
+  "Are there more pages after this one?"
+  hasMorePages: Boolean!
+  "Index of the last item in the current page."
+  lastItem: Int
+  "Index of the last available page."
+  lastPage: Int!
+  "Number of items per page."
+  perPage: Int!
+  "Number of total available items."
+  total: Int!
+}
+
+
+type PayableInvoiceDocumentMutation {
+  invoice: InvoiceDocument!
+  makePayment(input: CreditCardInput!): Boolean
+}
+
+
+type PayableSupplier {
+  key: ID!
+  id: ID!
+  supplierId: ID!
+  supplierName: String!
+  isTest: Boolean!
+  grossRevenuePeriodDue: Currency!
+  supplierEarningsPeriodDue: Currency!
+  netRevenueDollars: Currency!
+  netRevenuePercent: Float!
+  mediumTypes: [MediumTypeAccountingSummary!]
+}
+
+
+type PaymentMethod {
+  id: ID!
+  name: String!
+  description: String
+  is_credit_card: Boolean!
+  is_curated: Boolean!
+}
+
+
+type Permission {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+}
+
+
+type PlacementSetting {
+  id: ID!
+  name: String!
+  settings: JSON!
+  template: PlacementSettingTemplate
+  template_id: String
+  is_super: Boolean!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+
+type PlacementSettingMutation {
+  placementSetting: PlacementSetting
+  variant: ProductVariant
+  saveToVariant(variantId: ID!, input: SavePlacementSettingInput!): Boolean!
+  update: Boolean!
+  delete: Boolean!
+}
+
+
+type PlacementSettingTemplate {
+  id: ID!
+  name: String!
+  settings: JSON!
+  is_super: Boolean!
+}
+
+
+type Product {
+  id: ID!
+  property_id: ID!
+  campus_id: ID!
+  sku: String!
+  name: String!
+  collection: Collection!
+  is_template: Boolean!
+  is_super: Boolean!
+  description: String
+  is_enabled: Boolean!
+  is_bookable: Boolean!
+  has_bookable_ad_shop_child: Boolean!
+  auto_inject: JSON
+  typeEdges: [ProductProductType!]!
+  primaryPhoto: File
+  photos: [File!]
+  additional_attribute_columns: [String!]
+  fulfillmentMethods: [FulfillmentMethod!]
+  quantity_limit: Int
+  additionalFiles: [File!]
+  additional_information: String
+  variants(is_super: Boolean): [ProductVariant]
+  defaultPlacementSetting: PlacementSetting
+}
+
+
+type ProductMutation {
+  product: Product
+  create(input: ProductInput!): Boolean!
+  copy(input: ProductInput!): Boolean!
+  update(input: ProductInput!): Boolean!
+  delete: Boolean!
+}
+
+
+type ProductProductType {
+  is_template: Boolean!
+  type: ProductType
+}
+
+
+type ProductType {
+  id: ID!
+  medium_type_id: ID!
+  mediumType: MediumType
+  value: String!
+  class_tag: String
+  is_curated: Boolean!
+  supplier: Supplier
+  attributes: JSON
+  settings: JSON
+  required_attribute_columns: [String!]
+}
+
+
+type ProductVariant {
+  id: ID!
+  supplier_id: ID!
+  sku: String!
+  name: String!
+  full_name: String!
+  is_template: Boolean!
+  is_enabled: Boolean!
+  is_bookable: Boolean!
+  is_bookable_ad_shop: Boolean!
+  is_super: Boolean!
+  enabled_rate_classes: [RateClass!]
+  quantity: Int!
+  attributes: JSON
+  servingTag: String
+  product: Product
+  rateSheets: [RateSheet!]!
+  unit: Unit!
+  note: Note
+  defaultCreative: Creative
+  skuInventory: [SkuInventory]!
+  placementSetting: PlacementSetting
+}
+
+
+type ProductVariantGroup {
+  id: ID!
+  cart: Cart!
+  productVariant: ProductVariant!
+  fulfillmentMethod: FulfillmentMethod
+  dates: [ProductVariantGroupDate!]!
+  errors: [CartError!]!
+  total_base_price: Currency!
+  total_adjusted_price: Currency!
+}
+
+
+type ProductVariantGroupDate {
+  id: ID!
+  type: RateSheetType!
+  start_date: DateTime!
+  end_date: DateTime
+  days: Int!
+  quantity: Int!
+  errors: [CartError!]!
+  total_base_price: Currency!
+  total_adjusted_price: Currency!
+  estimated_impressions: JSON
+}
+
+
+type ProductVariantType {
+  id: ID!
+  medium_type_id: ID!
+  mediumType: MediumType
+  value: String!
+  is_curated: Boolean!
+  supplier: Supplier
+  attributes: JSON
+  productVariants: [ProductVariant!]
+}
+
+
+type Property {
+  id: ID!
+  sku: String!
+  name: String!
+  medium: Medium!
+  is_template: Boolean!
+  is_enabled: Boolean!
+  is_bookable: Boolean!
+  is_super: Boolean!
+  are_photos_visible: Boolean
+  has_dimensions: Boolean
+  is_digital_content: Boolean!
+  website_url: String
+  digital_seen_on: String
+  min_days: Int
+  min_impressions: Int
+  blocked_content: String
+  typeEdges: [PropertyPropertyType!]!
+  scheduleType: ScheduleType!
+  collections: [Collection!]!
+  created_at: DateTime
+  updated_at: DateTime
+  aes_256_key: String
+}
+
+
+type PropertyMutation {
+  property: Property
+  create(input: PropertyInput!): Boolean!
+  update(input: PropertyInput!): Boolean!
+  delete: Boolean!
+}
+
+
+type PropertyPropertyType {
+  is_template: Boolean!
+  type: PropertyType
+}
+
+
+type PropertyType {
+  id: ID!
+  medium_type_id: ID!
+  mediumType: MediumType!
+  value: String!
+  is_curated: Boolean!
+  supplier: Supplier
+}
+
+
+type QuantityLimit {
+  id: ID!
+  min: Float!
+  max: Float
+  increment: Float!
+  unit: String
+}
+
+
+type Query {
+  invite(id: ID!): Invite
+  nationalFinanceTracker: NationalFinanceTracker!
+  payableInvoice(id: ID!): InvoiceDocument
+  ad(id: ID!): Ad
+  adShop(buyer_id: ID, slug: String!): AdShop
+  audience(id: ID!): Audience
+  buyer(id: ID!): Buyer
+  takeoverBuyers(filter: JSON): [TakeoverBuyer!]
+  nationalCampaignTracker: NationalCampaignTracker!
+  adShopCart(ad_shop_slug: String!, id: ID): Cart
+  formsByCategory(category: String!): [Form!]
+  invoiceTerms: [Terms!]
+  location: LocationQuery!
+  placementSettingTemplates: [PlacementSetting!]
+  reachTypes: [ReachType!]!
+  scheduleTypes: [ScheduleType!]!
+  collectionSchedule(supplier_id: ID!, collection_id: ID): Schedule
+  mediakitTypes(supplier_id: ID, sort: JSON, filter: JSON): [MediumType!]
+  takeoverSuppliers: [TakeoverSupplier!]!
+  supplier(id: ID!): Supplier
+  supplierFilterData(id: ID!): SupplierFilterData!
+  adShopSubscriptionOverview: SubscriptionOverview!
+  nationalTagPath(id: ID!): NationalTagPath!
+  me(token: String): User
+  user(id: ID!): User!
+  buyerAds(buyer_id: ID!, sort: JSON, filter: JSON, first: Int = 10, page: Int): AdPaginator
+  buyerCampaigns(buyer_id: ID!, sort: JSON, filter: JSON, first: Int = 10, page: Int): CampaignPaginator
+  campaigns(sort: JSON, filter: JSON, first: Int = 10, page: Int): CampaignPaginator
+  notificationTypes(first: Int = 10, page: Int): NotificationTypePaginator
+  featureflags(sort: JSON, filter: JSON, first: Int = 10, page: Int): FeaturePaginator
+  orderLineItems(supplier_id: ID!, sort: JSON, filter: JSON, first: Int = 10, page: Int): OrderLineItemPaginator @deprecated(reason: "No longer supported")
+  suppliers(sort: JSON, filter: JSON, first: Int = 10, page: Int): SupplierPaginator
+  campuses(sort: JSON, filter: JSON, first: Int = 10, page: Int): CampusPaginator
+  campusesWithData(sort: JSON, filter: JSON, first: Int = 10, page: Int): CampusWithDataPaginator
+  superTags(sort: JSON, filter: JSON, first: Int = 10, page: Int): SuperTagPaginator
+  nationalTagPaths(sort: JSON, filter: JSON, first: Int = 10, page: Int): NationalTagPathPaginator
+  users(filter: JSON, first: Int = 10, page: Int): UserPaginator
+}
+
+
+type RangeData {
+  index: String!
+  indexList: [String!]
+  type: SearchDataType!
+  values: [String!]
+  min: Float
+  max: Float
+  interval: Float
+}
+
+
+type Rate {
+  id: ID!
+  rate_class: RateClass!
+  quantity: Int!
+  price: Float
+}
+
+
+type RateSheet {
+  id: ID!
+  type: RateSheetType!
+  date_start: DateTime
+  date_end: DateTime
+  is_default: Boolean!
+  quantity: Int!
+  rates: [Rate!]!
+}
+
+
+type Reach {
+  id: ID!
+  is_primary: Boolean!
+  is_locked: Boolean!
+  value: Int!
+  date_start: String
+  date_end: String
+}
+
+
+type ReachType {
+  id: ID!
+  value: String!
+  is_curated: Boolean!
+  supplier: Supplier
+}
+
+
+type Role {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String!
+  permissions: [Permission!]!
+}
+
+
+type SalesSummaryReportQuery {
+  comparison(input: ComparisonReportInput!): [JSON!]!
+  searchTools: [SearchTool!]!
+}
+
+
+type Schedule {
+  id: ID!
+  collection: Collection!
+  schedule_type_id: ID!
+  scheduleType: ScheduleType
+  quantityLimit: QuantityLimit
+  dates: [String!]!
+  upcomingDates: [String!]
+}
+
+
+type ScheduleType {
+  id: ID!
+  value: String!
+  description: String!
+  help: String!
+}
+
+
+type SearchTool {
+  key: ID!
+  id: ID!
+  type: SearchToolType!
+  name: String!
+  label: String
+  data: SearchData
+  tools: [SearchTool!]
+}
+
+
+type SelectData {
+  index: String!
+  indexList: [String!]
+  secondaryFilter: JSON
+  type: SearchDataType!
+  hideRelevanceScore: Boolean
+  isMulti: Boolean
+  useKeyAsIndex: Boolean
+  useColumnNotNullCheck: Boolean
+  sortExpression: String
+  noSelectionLabel: String!
+  emptyAsNull: Boolean
+  defaultSelection: [String]
+  options: [SelectOption!]
+}
+
+
+type SelectOption {
+  key: String
+  value: String
+}
+
+
+type Selection {
+  id: ID!
+}
+
+"Information about pagination using a simple paginator."
+
+type SimplePaginatorInfo {
+  "Number of items in the current page."
+  count: Int!
+  "Index of the current page."
+  currentPage: Int!
+  "Index of the first item in the current page."
+  firstItem: Int
+  "Index of the last item in the current page."
+  lastItem: Int
+  "Number of items per page."
+  perPage: Int!
+  "Are there more pages after this one?"
+  hasMorePages: Boolean!
+}
+
+
+type SkuInventory {
+  id: ID!
+  sku: String!
+  date: Date!
+  total_quantity: Int!
+  total_impressions: Int
+  available_quantity: Int!
+  available_impressions: Int
+  booked_quantity: Int!
+  booked_quantity_national: Int!
+  booked_quantity_local: Int!
+  booked_impressions: Int!
+  booked_impressions_national: Int!
+  booked_impressions_local: Int!
+}
+
+
+type State {
+  id: ID!
+  code: String!
+  name: String!
+}
+
+
+type Subscription {
+  newNotification: Notification
+  adUpdated: Ad
+}
+
+
+type SubscriptionFeature {
+  id: ID!
+  type: SubscriptionTypeEnum!
+  name: String!
+  description: String
+  featureFlag: Feature
+  position: Int!
+  created_at: DateTime!
+}
+
+
+type SubscriptionMutation {
+  subscription: AccountSubscription
+  update(input: SubscriptionUpdateInput!): Boolean
+  requestUpgrade(input: SubscriptionRequestUpgradeInput!): Boolean
+  registerPaymentMethod(input: SubscriptionRegisterPaymentMethodInput!): Boolean
+  removePaymentMethod: Boolean!
+}
+
+
+type SubscriptionOverview {
+  id: ID!
+  billingAddress: String!
+  types: [SubscriptionType!]
+  features: [SubscriptionFeature!]
+  paymentMethods: [PaymentMethod!]
+}
+
+
+type SubscriptionType {
+  id: ID!
+  type: SubscriptionTypeEnum!
+  name: String!
+  description: String!
+  features: [SubscriptionFeature!]
+  monthly_amount: Currency
+  annual_amount: Currency
+  forever_amount: Currency
+  created_at: DateTime!
+}
+
+
+type SummaryStat {
+  id: ID!
+  filter: JSON
+  sort: JSON
+  summary_type: SummaryStatType!
+  subTotals: [SummaryStatSubTotal!]!
+  total: Int!
+}
+
+
+type SummaryStatSubTotal {
+  title: String!
+  value: Int!
+}
+
+
+type SuperTag {
+  id: ID!
+  name: String!
+  slug: String!
+}
+
+
+type SuperTagMutation {
+  superTag: SuperTag
+  create(input: SuperTagInput!): Boolean!
+  update(input: SuperTagInput!): Boolean!
+  delete: Boolean!
+}
+
+"A paginated list of SuperTag items."
+
+type SuperTagPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of SuperTag items."
+  data: [SuperTag!]!
+}
+
+
+type Supplier {
+  id: ID!
+  uuid: String!
+  name: String!
+  display_name: String!
+  organization_type: String
+  member_since: DateTime
+  check_name: String
+  billing_notes: String
+  pending_approval_ads_count: Int!
+  supply_status: String
+  created_at: DateTime
+  updated_at: DateTime
+  terms_accepted_date: DateTime
+  is_test: Boolean!
+  primaryAddress: Address
+  billingAddress: Address
+  shippingAddress: Address
+  summaryStats: [SummaryStat!]
+  repUser: User
+  campuses: [Campus!]!
+  mediums: [Medium!]!
+  mediumTypes: [MediumType!]
+  mediakit: [Medium!]
+  property(id: ID!): Property
+  collection(id: ID!): Collection
+  adShop: AdShop
+  features: [Feature!]!
+  billingContact: Contact
+  primaryContact: Contact!
+  advisorContacts: [Contact]!
+  customer(id: ID, buyerId: ID): Customer!
+  buyers(sort: JSON): [Buyer!]
+  discounts: [Discount]
+  purchased_products: JSON
+  teamMembers: [User!]!
+  buyerReps: [User!]
+  notifications: [Notification!]
+  pendingNotifications: [Notification!]
+  tags: [Tag!]
+  customerTags: [Tag!]
+  invites(filter: JSON): [Invite!]
+  paymentMethods: [PaymentMethod!]!
+  invoiceNotBeingDeleted(id: ID!): InvoiceDocument
+  invoiceData: InvoiceData!
+  accountingReports: AccountingReportsQuery!
+  ad(id: ID!): Ad!
+  adsData: SupplierAdsData!
+  digitalAnalytics(type: String!): SupplierDigitalAdAnalyticsQuery!
+  skuInventory(filter: JSON): [SkuInventory]!
+  customersData: SupplierCustomersData!
+  customerList: [SupplierCustomerListItem!]
+  attributeColumns: [AttributeColumn!]
+  fulfillmentMethods: [FulfillmentMethod!]
+  placementProperties: [Property!]!
+  placementProducts: [Product!]
+  mediakitUnits: [Unit!]!
+  dimensionUnits: [Unit!]!
+  order(id: ID!): Order!
+  ordersData: SupplierOrdersData!
+  orderLineItemTracker: OrderLineItemTracker
+  adShopSubscription: AccountSubscription!
+  buyerEdges(supplier_id: ID, filter: JSON, sort: JSON, first: Int = 10, page: Int): CustomerPaginator
+  ads(sort: JSON, filter: JSON, first: Int = 10, page: Int): AdPaginator
+}
+
+
+type SupplierAdAnalyticsMutation {
+  exportDigitalAdAnalytics(filter: JSON, groupBy: String): JSON
+}
+
+
+type SupplierAdsData {
+  id: ID!
+  searchTools(filter: JSON): [SearchTool!]!
+  verificationsSearchTools(filter: JSON): [SearchTool!]!
+  ads(filter: JSON, sort: JSON, first: Int = 10, page: Int): AdPaginator
+}
+
+
+type SupplierCustomerListItem {
+  id: ID!
+  buyer_id: ID!
+  name: String!
+  email: String
+}
+
+
+type SupplierCustomersData {
+  id: ID!
+  searchTools(filter: JSON): [SearchTool!]!
+  customers(filter: JSON, sort: JSON, first: Int = 10, page: Int): CustomerPaginator
+}
+
+
+type SupplierDigitalAdAnalyticsQuery {
+  id: ID!
+  reportStats(filter: JSON): DigitalAnalyticsReportStats
+  searchTools(filter: JSON): [SearchTool!]!
+  digitalStatus: DigitalStatus!
+  report(input: ComparisonReportInput!): JSON!
+  ads(filter: JSON, sort: JSON, first: Int = 10, page: Int): DigitalAdAnalyticsPaginator
+}
+
+
+type SupplierFilterData {
+  purchased_products: JSON
+  buyers(sort: JSON): [Buyer!]
+  buyerReps: [User!]
+}
+
+
+type SupplierInvoiceDocumentMutation {
+  invoice: InvoiceDocument
+  createForLineItems(input: CreateInvoiceInput): [OrderLineItem!]
+  update(input: UpdateInvoiceInput): Boolean
+  unlock: InvoiceDocument!
+  void: Boolean!
+  delete: Boolean!
+  createLineItem(input: CreateDocumentLineItemInput!): Boolean
+  updateLineItem(id: ID!, input: UpdateDocumentLineItemInput!): Boolean
+  removeLineItem(id: ID!): Boolean
+  addPayment(input: InvoicePaymentInput!): Boolean!
+  makeCreditCardPayment(input: CreditCardInput): Boolean!
+  voidPayment(id: ID!): Boolean!
+  selectByIds(ids: [ID!], select: Boolean): [InvoiceDocument!]
+  selectByFilter(filter: JSON!, select: Boolean): [InvoiceDocument!]
+  exportInvoices(filter: JSON): JSON
+  bulkInvoice(input: SupplierBulkInvoiceInput!): Boolean!
+}
+
+
+type SupplierMutation {
+  supplier: Supplier
+  update(input: SupplierInput!): Boolean!
+  requestAccess(supplier_id: ID!, email: String!): Boolean!
+  rejectRequest(invite_id: ID!): Boolean!
+  sendInvite(input: SendSupplierInviteInput): Boolean!
+  takeover: Boolean!
+  mutateInvoice(id: ID): SupplierInvoiceDocumentMutation!
+  mutateAd(id: ID): AdMutation
+  mutateAdShop: AdShopMutation
+  mutateAdAnalytics: SupplierAdAnalyticsMutation!
+  mutateContact(id: ID): ContactMutation
+  mutateCustomer(id: ID, buyer_id: ID): CustomerMutation!
+  mutateDiscount(id: ID): DiscountMutation!
+  mutatePlacementSetting: PlacementSettingMutation!
+  mutateVariant(id: ID!): VariantMutation!
+  mutateMediakit: MediakitMutation!
+  mutateOrder(id: ID): OrderMutation!
+  mutateOrderLineItemTracker: OrderLineItemTrackerMutation
+  mutateSubscription(id: ID): SubscriptionMutation!
+  mutateUser(id: ID!): SupplierUserMutation
+}
+
+
+type SupplierOrdersData {
+  id: ID!
+  searchTools(filter: JSON): [SearchTool!]!
+  orders(filter: JSON, sort: JSON, first: Int = 10, page: Int): OrderPaginator
+}
+
+"A paginated list of Supplier items."
+
+type SupplierPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of Supplier items."
+  data: [Supplier!]!
+}
+
+
+type SupplierUser {
+  id: ID!
+  supplier: Supplier!
+  user: User!
+  tags: [Tag!]
+  tagNames: [String!]
+}
+
+
+type SupplierUserMutation {
+  user: User
+  setUserContact(contactTypes: [ContactTypeInput!]!): Boolean!
+  setUserRole(type: SupplierRoleType): Boolean!
+  setTeamMemberTags(tags: [String!]): Boolean!
+  removeUser: Boolean!
+}
+
+
+type Tag {
+  id: ID
+  name: String
+  slug: String
+}
+
+
+type TakeoverBuyer {
+  id: ID!
+  name: String!
+  display_name: String!
+  campaign_type: CampaignType!
+}
+
+
+type TakeoverSupplier {
+  id: ID!
+  display_name: String!
+  organization_type: String!
+  is_test: Boolean!
+  member_since: DateTime
+}
+
+
+type Terms {
+  id: ID!
+  text: String
+  is_default: Boolean!
+  type: String!
+  days: Int
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+
+type TextData {
+  index: String!
+  indexList: [String!]
+  type: SearchDataType!
+  default: Boolean
+}
+
+
+type Transaction {
+  id: ID!
+  buyer: Buyer
+  supplier: Supplier
+  status: TransactionStatus!
+  type: TransactionType!
+  paymentMethod: PaymentMethod
+  amount: Currency!
+  fee: Currency!
+  payout: Currency!
+  refunded_amount: Currency
+  description: String
+  provider: String
+  date: DateTime!
+  creditCard: CreditCard
+}
+
+
+type TransactionReportQuery {
+  comparison(input: ComparisonReportInput!): [JSON!]!
+  searchTools: [SearchTool!]!
+}
+
+
+type TreeSelectData {
+  index: String!
+  indexList: [String!]
+  type: SearchDataType!
+  isMulti: Boolean
+  noSelectionLabel: String!
+  defaultSelection: [String]
+  options: [TreeSelectOption!]
+}
+
+
+type TreeSelectOption {
+  key: String
+  value: String
+  options: [TreeSelectOption!]
+}
+
+
+type Unit {
+  id: ID!
+  name: String!
+  is_curated: Boolean!
+}
+
+
+type User {
+  id: ID!
+  uuid: ID!
+  email: String!
+  name: String
+  first_name: String!
+  last_name: String
+  phone: String
+  profilePicture: File
+  created_at: DateTime!
+  force_redirect_url: String
+  ads_platform_redirect_url: String
+  notifications: [Notification!]
+  userNotificationTypes: [UserNotificationType!]
+  pendingNotifications: [Notification!]
+  buyers: [Buyer!]!
+  buyerEdges: [BuyerUser!]!
+  buyerUser(buyer_id: ID!): BuyerUser
+  suppliers: [Supplier!]!
+  supplierEdges: [SupplierUser!]!
+  supplierUser(supplier_id: ID!): SupplierUser
+  roles: [Role!]!
+  permissions: [Permission!]!
+  features: [Feature!]!
+  globalFeatures: [Feature!]!
+  settings: [UserSetting!]
+  systemSettings: JSON
+  authTokens: [AuthToken!]
+}
+
+
+type UserMutation {
+  user: User
+  completeRegistration(id: ID!, input: UserInput!): Boolean!
+  markAllNotificationsRead: Boolean!
+  updateUserSetting(slug: String!, value: Boolean!): Boolean!
+  mutateUserNotificationType(id: ID!): UserNotificationTypeMutation!
+}
+
+
+type UserNotificationType {
+  id: ID!
+  notificationType: NotificationType
+  email: Boolean!
+  text: Boolean!
+  desktop: Boolean!
+  in_platform: Boolean!
+}
+
+
+type UserNotificationTypeMutation {
+  userNotificationType: UserNotificationType!
+  update(input: UserNotificationTypeInput!): Boolean
+}
+
+"A paginated list of User items."
+
+type UserPaginator {
+  "Pagination information about the list of items."
+  paginatorInfo: PaginatorInfo!
+  "A list of User items."
+  data: [User!]!
+}
+
+
+type UserSetting {
+  id: ID!
+  slug: String!
+  name: String!
+  value: Boolean!
+}
+
+
+type VariantMutation {
+  variant: ProductVariant
+  saveDefaultCreative(input: CreativeInput!): Boolean!
+}
+
+
+type Verification {
+  id: ID!
+  ad: Ad!
+  status: VerificationStatus!
+  created_at: DateTime!
+  updated_at: DateTime!
+  date_supplier_last_updated: DateTime
+  approved_at: DateTime
+  rejected_at: DateTime
+  rejectionNote: Note
+  formResponse: FormResponse
+}
+
+
+type WarningMessage {
+  title: String
+  text: String
+  code: String
+}
+
+"The `Currency` scalar type represents a monetary amount in USD."
+
+scalar Currency
+
+"The `Date` scalar type represents a date value encoded as Y-M-D format"
+
+scalar Date
+
+"The `DateTime` scalar type represents a date and time value encoded as ISO-8601"
+
+scalar DateTime
+
+"""
+The `JSON` scalar type represents JSON values as specified by
+        [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+
+scalar JSON
+
+"The `URL` scalar type is equivalent to the `String` scalar."
+
+scalar URL
+
+"""
+The `Upload` special type represents a file to be uploaded in the same HTTP request as specified by
+ [graphql-multipart-request-spec](https://github.com/jaydenseric/graphql-multipart-request-spec).
+"""
+
+scalar Upload
+
+
+union SearchData = BooleanData | TextData | SelectData | TreeSelectData | RangeData | DateCalendarData | DateRangeData | CoupleSelectData | GroupData
+
+"Directs the executor to include this field or fragment only when the `if` argument is true."
+directive @include(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"Directs the executor to skip this field or fragment when the `if` argument is true."
+directive @skip(if: Boolean!) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"Marks an element of a GraphQL schema as no longer supported."
+directive @deprecated(reason: String = "No longer supported") on FIELD_DEFINITION | ENUM_VALUE

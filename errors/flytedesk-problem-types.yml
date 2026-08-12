@@ -1,0 +1,50 @@
+generated: '2026-08-12'
+method: probed
+source: live error responses from https://api.app.flytedesk.com/api/graphql
+note: >-
+  FlyteDesk publishes no error reference, so this catalogue is built from error responses
+  actually returned by the live GraphQL endpoint to an anonymous caller. Categories are the
+  values the server itself puts in `errors[].extensions.category`. This is a partial
+  catalogue by construction — only anonymously reachable failure modes could be observed.
+format: graphql-errors
+rfc9457: false
+problem_json: false
+envelope:
+  http_status_on_error: 200
+  shape: '{ "errors": [ { "message", "extensions": { "category" }, "locations", "path", "trace" } ], "extensions": {...} }'
+  discriminator: extensions.category
+  note: >-
+    Errors are returned with HTTP 200 in the GraphQL style, so a client MUST inspect the
+    body — status code alone never signals failure. Transport-level failures (404 on GET,
+    for example) do use real status codes.
+error_count: 2
+errors:
+- category: graphql
+  trigger: query names a field that does not exist on the type
+  http_status: 200
+  message_example: Cannot query field "nosuchfield" on type "Query".
+  remediation: >-
+    Validate the document against graphql/flytedesk-graphql.graphql before sending; the
+    schema is the only reference FlyteDesk exposes.
+  observed: '2026-08-12'
+- category: DataValidationError
+  trigger: authorization failure — resolving a field the caller may not read
+  http_status: 200
+  message_example: You are not allowed to Do Anything
+  remediation: >-
+    Present a valid JWT for an account entitled to the record. Note the category is
+    DataValidationError even though the failure is authorization, so category is not a
+    reliable discriminator between validation and authorization.
+  observed: '2026-08-12'
+observations:
+- >-
+  Errors include a `trace` array with absolute server file paths, vendor package paths and
+  PHP call frames (e.g. /var/task/vendor/nuwave/lighthouse/src/Schema/Directives/...) — the
+  framework's debug mode appears to be enabled in production and the stack trace is
+  returned to unauthenticated callers. Recorded as observed fact.
+- >-
+  The `/var/task/` path prefix indicates the API runs on AWS Lambda behind an
+  Application Load Balancer (server: awselb/2.0).
+- >-
+  Not every failure is signalled as an error: an unauthenticated `{ me { id } }` returns
+  `{"data":{"me":null}}` with no errors array at all.

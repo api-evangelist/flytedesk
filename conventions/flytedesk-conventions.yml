@@ -1,0 +1,106 @@
+generated: '2026-08-12'
+method: derived
+source: graphql/flytedesk-graphql.graphql + live response headers from https://api.app.flytedesk.com/api/graphql
+note: >-
+  Cross-cutting runtime semantics derived from the introspected GraphQL schema and the
+  live endpoint. FlyteDesk publishes no developer documentation, so nothing here is a
+  documented promise — it is what the contract and the wire actually do today. Where a
+  convention is absent, that absence is recorded rather than filled in.
+api_style: graphql
+endpoint: https://api.app.flytedesk.com/api/graphql
+transport:
+  method: POST only
+  get_status: 404
+  content_type: application/json
+  batching: not advertised
+authentication:
+  style: JWT bearer / session cookie
+  detail: authentication/flytedesk-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key header is accepted (access-control-allow-headers does not include
+    one) and no mutation input in the schema carries an idempotency/request-key field.
+    Mutations are grouped into namespace types (mutateOrder, mutateAd, mutateSupplier …)
+    with no de-duplication contract. No Idempotency pointer is emitted in apis.yml.
+pagination:
+  supported: true
+  style: page-number (Laravel Lighthouse paginator)
+  request_params:
+  - name: first
+    meaning: page size
+  - name: page
+    meaning: 1-indexed page number
+  response_envelope: '{ data: [...], paginatorInfo: { ... } }'
+  paginator_types: 18
+  info_types:
+  - PaginatorInfo
+  - SimplePaginatorInfo
+  paginated_queries:
+  - buyerAds
+  - buyerCampaigns
+  - campaigns
+  - notificationTypes
+  - featureflags
+  - orderLineItems
+  - suppliers
+  - campuses
+  - campusesWithData
+  - superTags
+  - nationalTagPaths
+  - users
+  cursor_pagination: false
+  note: >-
+    No Relay connection/edge/cursor types exist in the schema; every collection query uses
+    Lighthouse's offset paginator. Deep paging is therefore offset-bound.
+filtering_and_sorting:
+  supported: true
+  params:
+  - filter
+  - sort
+  note: >-
+    Nearly every collection query accepts `filter` and `sort` input objects; shapes are
+    per-query and only readable from the SDL, since there is no reference documentation.
+field_selection:
+  mechanism: native GraphQL selection sets
+  sparse_fieldsets: n/a (inherent to GraphQL)
+  expansion: n/a (inherent to GraphQL)
+metadata:
+  custom_metadata_fields: false
+  note: No generic metadata/annotations bag on the core entities.
+request_tracing:
+  header: session-uuid
+  detail: >-
+    Every response returns a `session-uuid` header AND sets the same value as a cookie. It
+    is a session identifier, not a per-request correlation id. There is no request-id,
+    x-request-id or traceparent header on the response.
+versioning:
+  strategy: none published
+  api_version_in_path: false
+  api_version_header: false
+  build_signal:
+    header: appversion
+    example_shape: 40-char git commit sha
+    note: >-
+      The endpoint returns an `appversion` header carrying a deploy commit sha, and
+      exposes an `AppVersionMismatch` header to the browser — a client-freshness signal
+      for the SPA, not a semantic API version a consumer can pin.
+error_envelope:
+  format: graphql-errors
+  rfc9457: false
+  shape: '{ data: ..., errors: [ { message, locations, path, extensions } ] }'
+  http_status_on_error: 200
+  detail: errors/flytedesk-problem-types.yml
+rate_limit_signalling:
+  headers_present: false
+  detail: rate-limits/flytedesk-rate-limits.yml
+extensions_block:
+  present: true
+  keys:
+  - lighthouse_subscriptions
+  note: >-
+    Every response carries extensions.lighthouse_subscriptions {version, channel,
+    channels}, which is how the server advertises subscription channels for a query.
+lifecycle:
+  detail: lifecycle/flytedesk-lifecycle.yml

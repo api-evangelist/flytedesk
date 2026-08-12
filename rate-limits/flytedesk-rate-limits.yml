@@ -1,0 +1,39 @@
+generated: '2026-08-12'
+method: probed
+source: https://api.app.flytedesk.com/api/graphql + https://www.flytedesk.com/
+note: >-
+  FlyteDesk publishes no developer documentation, therefore no documented rate limits.
+  Probed the live GraphQL endpoint directly: ten rapid anonymous POSTs all returned HTTP
+  200 and no response carried any rate-limit or Retry-After header. An honest zero.
+limit_count: 0
+documented: false
+docs: null
+limits: []
+response_headers:
+  observed: []
+  standard_ratelimit_headers: false
+  x_ratelimit_headers: false
+  retry_after: false
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header appears on any response, so a
+    client has no runtime signal for remaining quota or backoff timing.
+exhaustion:
+  status_code: unknown
+  note: >-
+    Not observed. Deliberately not stress-tested — probing to exhaustion against a live
+    production endpoint we do not own is out of scope for this pipeline.
+graphql_cost_controls:
+  query_depth_limit: not advertised
+  query_complexity_limit: not advertised
+  persisted_queries: not advertised
+  note: >-
+    No complexity or depth limit is declared in the schema or signalled in the extensions
+    block. Introspection of the full 374-type schema succeeded in a single unauthenticated
+    request.
+evidence:
+- url: https://api.app.flytedesk.com/api/graphql
+  method: POST
+  requests: 10
+  statuses: all 200
+  rate_limit_headers: none
+  checked: '2026-08-12'
