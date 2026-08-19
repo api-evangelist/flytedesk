@@ -2,12 +2,11 @@ generated: '2026-08-12'
 method: derived
 source: graphql/flytedesk-graphql.graphql
 status: candidate
-note: >-
-  FlyteDesk operates NO MCP server. Searched the flytedesk.com site, every subdomain, the
-  Flytedesk GitHub organization and the public MCP registries — nothing. What follows is a
-  CANDIDATE tool surface derived mechanically from the read-side of FlyteDesk's GraphQL
-  schema, showing what an MCP server over this API could expose. It is not published by
-  FlyteDesk, is not callable, and no MCPServer pointer is emitted in apis.yml.
+note: FlyteDesk operates NO MCP server. Searched the flytedesk.com site, every subdomain, the Flytedesk
+  GitHub organization and the public MCP registries — nothing. What follows is a CANDIDATE tool surface
+  derived mechanically from the read-side of FlyteDesk's GraphQL schema, showing what an MCP server over
+  this API could expose. It is not published by FlyteDesk, is not callable, and no MCPServer pointer is
+  emitted in apis.yml.
 searched:
 - surface: https://www.flytedesk.com/ and all subdomains
   result: no MCP endpoint, no /mcp path, no mcp.json
@@ -19,10 +18,8 @@ official_server: null
 endpoint: null
 transport: null
 authentication:
-  note: >-
-    Any real server would inherit the API's JWT-bearer auth and its
-    invite-only credential issuance — see authentication/flytedesk-authentication.yml.
-    There is no OAuth authorization server to discover.
+  note: Any real server would inherit the API's JWT-bearer auth and its invite-only credential issuance
+    — see authentication/flytedesk-authentication.yml. There is no OAuth authorization server to discover.
 candidate_tool_count: 20
 candidate_tools:
 - name: get_supplier
@@ -108,11 +105,9 @@ candidate_tools:
   description: Fetch one audience definition used for campus targeting.
 excluded_from_candidates:
   mutations: 25
-  reason: >-
-    Every mutation writes production advertising, order or finance records under a
-    namespaced mutate* type. Deriving write tools for an API we do not own, that publishes
-    no documentation and no sandbox, would be irresponsible; only read operations are
-    listed.
+  reason: Every mutation writes production advertising, order or finance records under a namespaced mutate*
+    type. Deriving write tools for an API we do not own, that publishes no documentation and no sandbox,
+    would be irresponsible; only read operations are listed.
   auth_and_session_fields:
   - loginUserMutation
   - logout
@@ -120,8 +115,11 @@ excluded_from_candidates:
   - sendResetPasswordEmailMutation
 input_schemas:
   available: true
-  note: >-
-    Real input schemas for every tool above are recoverable from
-    graphql/flytedesk-graphql.graphql — each query's filter/sort input objects are fully
-    described in the SDL. They are not inlined here because these tools are candidates,
-    not a published contract.
+  note: Real input schemas for every tool above are recoverable from graphql/flytedesk-graphql.graphql
+    — each query's filter/sort input objects are fully described in the SDL. They are not inlined here
+    because these tools are candidates, not a published contract.
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census
