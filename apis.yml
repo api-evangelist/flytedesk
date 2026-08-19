@@ -32,7 +32,7 @@ x-backed-by:
 - techstars
 x-tier: profiled
 x-tier-reason: first-party GraphQL contract captured by anonymous introspection
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-12'
 tags:
