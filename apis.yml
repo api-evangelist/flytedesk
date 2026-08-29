@@ -11,6 +11,17 @@ description: flytedesk is the campus advertising platform that connects national
   publishes no developer portal, no API reference and no SDK, but it does operate a
   first-party GraphQL API at api.app.flytedesk.com with introspection enabled, so its
   full 374-type schema is publicly readable and is captured here.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: quote-only
   onboarding: sales
